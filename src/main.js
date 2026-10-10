@@ -64,7 +64,7 @@ document.querySelector('#brief-form').addEventListener('submit', event => {
   const brief = document.querySelector('#project-brief').value.trim();
   if (!brief) {document.querySelector('#project-brief').setCustomValidity('Please describe your project.');document.querySelector('#project-brief').reportValidity();return;}
   const service=document.querySelector('#project-type').value;
-  document.querySelector('#prepared-brief').value=`Project enquiry for HUR Solution\nService: ${service}\n\n${brief}`;
+  document.querySelector('#prepared-brief').value=`Project enquiry for HUR Solution\nName: ${document.querySelector("#client-name").value.trim() || "Not provided"}\nWebsite: ${document.querySelector("#store-url").value.trim() || "Not provided"}\nService: ${service}\nBudget: ${document.querySelector("#project-budget").value}\nTimeline: ${document.querySelector("#project-timeline").value}\n\n${brief}`;
   document.querySelector('#email-enquiry').href=`mailto:alikhanharis515@gmail.com?subject=${encodeURIComponent('Project enquiry — '+service)}&body=${encodeURIComponent(document.querySelector('#prepared-brief').value)}`;
   document.querySelector('#brief-result').hidden=false;
   document.querySelector('#prepared-brief').focus();

@@ -21,11 +21,11 @@ GSAP handles masked headline entrances, ScrollTrigger reveals, subtle project pa
 
 ## Content & enquiries
 
-Enquiries prepare an email draft addressed to `alikhanharis515@gmail.com`; they are not sent or stored. A copy fallback is available. A hosted endpoint is required for direct browser submissions.
+Enquiries include optional name/store URL plus service, budget, timeline, and project details. They prepare an email draft addressed to `alikhanharis515@gmail.com`; they are not sent or stored. A copy fallback is available. A hosted endpoint is required for direct browser submissions.
 
 Forme and Assembly are expressly identified as design studies, not completed client projects. Confirm service descriptions and replace concepts with verified project information before launch. The website is not affiliated with Shopify.
 
-The supplied competitor and existing live site were blocked by environment network policy. This design is original; current-site content and indexed URLs have not been audited. Before replacing the live site, inventory its URLs, map redirects, review canonical/metadata, and connect Search Console.
+The competitor’s pasted HTML was reviewed as a content reference for Shopify services, process, FAQs, and enquiry structure. HUR Solution uses original wording; competitor rankings, testimonials, client names, metrics, payment terms, and prices are excluded. The existing live site remains blocked by environment network policy; its content and indexed URLs have not been audited. Before replacing the live site, inventory its URLs, map redirects, review canonical/metadata, and connect Search Console.
 
 ## Fonts & SEO
 
