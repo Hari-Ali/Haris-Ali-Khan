@@ -3,9 +3,16 @@ import "@fontsource/inter/latin-500.css";
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import SplitType from "split-type";
+import {
+  enableSmoothScroll,
+  disableSmoothScroll,
+  scrollTo,
+  startScroll,
+  stopScroll,
+} from "./motion/scroll";
 import { siteConfig } from "./site-config";
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
 document.documentElement.classList.add("js-enhanced");
 const reduced = matchMedia("(prefers-reduced-motion: reduce)");
 const mm = gsap.matchMedia();
@@ -30,6 +37,7 @@ menuClose.type = "button";
 menuClose.textContent = "Close navigation ×";
 menu?.prepend(menuClose);
 if (menu) {
+  menu.setAttribute("data-lenis-prevent", "");
   menu.setAttribute("role", "dialog");
   menu.setAttribute("aria-label", "Site navigation");
   menu.setAttribute("aria-modal", "true");
@@ -37,6 +45,7 @@ if (menu) {
 function closeMenu({ immediate = false, restore = true } = {}) {
   if (!menuOpen) return;
   menuOpen = false;
+  startScroll();
   menuButton.setAttribute("aria-expanded", "false");
   menuTween?.kill();
   const finish = () => {
@@ -60,6 +69,7 @@ function closeMenu({ immediate = false, restore = true } = {}) {
 }
 function openMenu() {
   menuOpen = true;
+  stopScroll();
   previousOverflow = document.body.style.overflow;
   document.body.style.overflow = "hidden";
   menu.hidden = false;
@@ -234,10 +244,37 @@ reduced.addEventListener("change", () => {
 const scene = document.querySelector(".scene");
 mm.add("(prefers-reduced-motion: no-preference)", () => {
   const cleanup = [];
+  enableSmoothScroll();
+  if (document.querySelector(".detail-page"))
+    gsap.from(".detail-page", {
+      opacity: 0,
+      y: 12,
+      duration: 0.65,
+      ease: "power3.out",
+    });
+  cleanup.push(disableSmoothScroll);
   if (document.querySelector(".hero")) {
+    const heading = document.querySelector(".hero h1");
+    heading.setAttribute(
+      "aria-label",
+      heading.textContent.replace(/\s+/g, " ").trim(),
+    );
+    const split = new SplitType(heading, {
+      types: "words",
+      wordClass: "hero-word",
+    });
+    split.words.forEach((word) => word.setAttribute("aria-hidden", "true"));
+    cleanup.push(() => {
+      split.revert();
+      heading.removeAttribute("aria-label");
+    });
     gsap
       .timeline({ defaults: { ease: "power3.out" } })
-      .from(".line > span", { yPercent: 105, duration: 1, stagger: 0.11 }, 0.05)
+      .from(
+        ".hero-word",
+        { yPercent: 110, duration: 0.95, stagger: 0.07 },
+        0.05,
+      )
       .from(
         ".hero-top,.hero-description,.hero-actions",
         { opacity: 0, y: 14, duration: 0.75, stagger: 0.1 },
@@ -264,42 +301,6 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       scrollTrigger: { trigger: element, start: "top 94%", once: true },
     }),
   );
-  if (scene) {
-    const float = gsap.to(".bag-float", {
-      y: -8,
-      duration: 4,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: 1.3,
-    });
-    const shadow = gsap.to(".bag-shadow", {
-      scaleX: 0.9,
-      opacity: 0.7,
-      duration: 4,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: 1.3,
-    });
-    const trigger = ScrollTrigger.create({
-      trigger: scene,
-      start: "top bottom",
-      end: "bottom top",
-      onToggle: (self) =>
-        [float, shadow].forEach((t) =>
-          self.isActive && !document.hidden ? t.resume() : t.pause(),
-        ),
-    });
-    const visibility = () =>
-      [float, shadow].forEach((t) =>
-        document.hidden || !trigger.isActive ? t.pause() : t.resume(),
-      );
-    document.addEventListener("visibilitychange", visibility);
-    cleanup.push(() =>
-      document.removeEventListener("visibilitychange", visibility),
-    );
-  }
   const track = document.querySelector(".timeline");
   if (track) {
     gsap.to(".timeline-progress", {
@@ -345,10 +346,7 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     if (target === null) return;
     event.preventDefault();
     closeMenu({ immediate: true, restore: false });
-    gsap.to(window, {
-      duration: 0.85,
-      scrollTo: { y: target, offsetY: 100, autoKill: true },
-      ease: "power2.inOut",
+    scrollTo(target, {
       onComplete: () => {
         history.pushState(null, "", id);
         if (target instanceof HTMLElement) {
@@ -373,6 +371,22 @@ mm.add(
   "(min-width:1001px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)",
   () => {
     const cleanups = [];
+    const processLayout = document.querySelector(".process-layout");
+    const processIntro = document.querySelector(".process-intro");
+    if (processLayout && processIntro) {
+      gsap.set(processIntro, { position: "relative", top: 0 });
+      ScrollTrigger.create({
+        trigger: processLayout,
+        start: "top 110px",
+        end: () =>
+          "+=" +
+          Math.max(0, processLayout.offsetHeight - processIntro.offsetHeight),
+        pin: processIntro,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      });
+    }
+
     document.querySelectorAll(".magnetic").forEach((button) => {
       const move = (event) => {
         const r = button.getBoundingClientRect();
@@ -392,51 +406,6 @@ mm.add(
         button.removeEventListener("pointerleave", leave);
       });
     });
-    if (scene) {
-      const rotate = gsap.to(".bag-object", {
-        rotationY: -17,
-        rotationZ: -5,
-        duration: 6,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-      const visibility = () =>
-        document.hidden || !rotationTrigger.isActive
-          ? rotate.pause()
-          : rotate.resume();
-      document.addEventListener("visibilitychange", visibility);
-      const rotationTrigger = ScrollTrigger.create({
-        trigger: scene,
-        start: "top bottom",
-        end: "bottom top",
-        onToggle: (self) =>
-          self.isActive && !document.hidden ? rotate.resume() : rotate.pause(),
-      });
-      const move = (event) => {
-        const r = scene.getBoundingClientRect();
-        gsap.to(".bag-float", {
-          rotationY: (event.clientX - r.left - r.width / 2) / 40,
-          rotationX: -(event.clientY - r.top - r.height / 2) / 60,
-          duration: 0.8,
-          ease: "power3.out",
-        });
-      };
-      const leave = () =>
-        gsap.to(".bag-float", {
-          rotationX: 0,
-          rotationY: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        });
-      scene.addEventListener("pointermove", move);
-      scene.addEventListener("pointerleave", leave);
-      cleanups.push(() => {
-        document.removeEventListener("visibilitychange", visibility);
-        scene.removeEventListener("pointermove", move);
-        scene.removeEventListener("pointerleave", leave);
-      });
-    }
     document.querySelectorAll(".service-panel").forEach((card) => {
       const enter = () =>
         gsap.to(card.querySelector(".service-arrow"), {
@@ -495,6 +464,9 @@ const observer = new IntersectionObserver(
   { rootMargin: "-15% 0px -60% 0px" },
 );
 sections.forEach((s) => observer.observe(s));
+document
+  .querySelectorAll("textarea,.comparison-wrap")
+  .forEach((element) => element.setAttribute("data-lenis-prevent", ""));
 const form = document.querySelector("#brief-form");
 document.querySelectorAll("[data-enquiry-plan]").forEach((link) =>
   link.addEventListener("click", () => {
@@ -540,12 +512,153 @@ if (form) {
     }
   });
 }
-window.addEventListener(
-  "pagehide",
-  () => {
-    observer.disconnect();
-    mm.revert();
-    ScrollTrigger.getAll().forEach((t) => t.kill());
+const libraryCleanup = [];
+window.addEventListener("hur:scroll-top", () => scrollTo(0, { offset: 0 }));
+let sceneUnmount;
+let sceneLoading = false;
+async function loadScene() {
+  if (
+    !scene ||
+    reduced.matches ||
+    sceneUnmount ||
+    sceneLoading ||
+    document.hidden
+  )
+    return;
+  sceneLoading = true;
+  try {
+    const canvas = document.createElement("canvas");
+    const supported = canvas.getContext("webgl2");
+    if (!supported) return;
+    supported.getExtension("WEBGL_lose_context")?.loseContext();
+    const { mountShopifyScene } = await import("./motion/ShopifyScene.jsx");
+    if (!reduced.matches) sceneUnmount = mountShopifyScene(scene);
+  } catch (error) {
+    console.warn(
+      "3D unavailable; keeping the static storefront illustration.",
+      error,
+    );
+  } finally {
+    sceneLoading = false;
+  }
+}
+if (scene) {
+  const optIn = document.createElement("button");
+  optIn.type = "button";
+  optIn.className = "explore-three";
+  optIn.textContent = "Explore in 3D";
+  optIn.hidden = reduced.matches || matchMedia("(min-width:1001px)").matches;
+  scene.append(optIn);
+  optIn.addEventListener("click", () => {
+    optIn.disabled = true;
+    loadScene().finally(() => {
+      optIn.hidden = !!sceneUnmount;
+      optIn.disabled = false;
+    });
+  });
+  const observer3d = new IntersectionObserver(
+    (entries) => {
+      if (
+        entries[0].isIntersecting &&
+        matchMedia("(min-width:1001px)").matches &&
+        !navigator.connection?.saveData
+      ) {
+        const schedule =
+          window.requestIdleCallback || ((fn) => setTimeout(fn, 400));
+        schedule(loadScene, { timeout: 1800 });
+      }
+    },
+    { rootMargin: "80px" },
+  );
+  observer3d.observe(scene);
+  libraryCleanup.push(() => observer3d.disconnect());
+  reduced.addEventListener("change", () => {
+    optIn.hidden = reduced.matches;
+    if (reduced.matches) {
+      sceneUnmount?.();
+      sceneUnmount = undefined;
+    } else if (matchMedia("(min-width:1001px)").matches) loadScene();
+  });
+}
+let slidersLoading = false;
+const sliderObserver = new IntersectionObserver(
+  async (entries) => {
+    if (!entries.some((entry) => entry.isIntersecting) || slidersLoading)
+      return;
+    slidersLoading = true;
+    sliderObserver.disconnect();
+    try {
+      const { mountSliders } = await import("./motion/sliders");
+      libraryCleanup.push(mountSliders(reduced));
+      ScrollTrigger.refresh();
+    } catch (error) {
+      console.warn("Slider unavailable; preserving static projects", error);
+    }
   },
-  { once: true },
+  { rootMargin: "180px" },
 );
+document
+  .querySelectorAll(".portfolio-swiper,.reviews-swiper")
+  .forEach((element) => sliderObserver.observe(element));
+libraryCleanup.push(() => sliderObserver.disconnect());
+let controlLoading = false;
+const loadControl = async () => {
+  if (scrollY < 900 || controlLoading) return;
+  controlLoading = true;
+  window.removeEventListener("scroll", loadControl);
+  try {
+    const { mountScrollControl } = await import("./motion/ScrollControl.jsx");
+    libraryCleanup.push(mountScrollControl());
+  } catch (error) {
+    console.warn("Optional scroll control unavailable", error);
+  }
+};
+window.addEventListener("scroll", loadControl, { passive: true });
+libraryCleanup.push(() => window.removeEventListener("scroll", loadControl));
+loadControl();
+// GSAP owns page exits; component and 3D transforms stay with their own libraries.
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href]");
+  if (
+    !link ||
+    event.defaultPrevented ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    link.target ||
+    link.hasAttribute("download") ||
+    reduced.matches
+  )
+    return;
+  const url = new URL(link.href);
+  if (url.origin !== location.origin || url.pathname === location.pathname)
+    return;
+  event.preventDefault();
+  gsap.to(main, {
+    opacity: 0,
+    y: -5,
+    duration: 0.2,
+    ease: "power2.in",
+    onComplete: () => location.assign(url.href),
+  });
+});
+window.addEventListener("pagehide", (event) => {
+  if (event.persisted) {
+    gsap.killTweensOf(main);
+    gsap.set(main, { clearProps: "opacity,transform" });
+    return;
+  }
+  observer.disconnect();
+  mm.revert();
+  disableSmoothScroll();
+  sceneUnmount?.();
+  libraryCleanup.forEach((fn) => fn());
+  ScrollTrigger.getAll().forEach((t) => t.kill());
+});
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    gsap.set(main, { clearProps: "opacity,transform" });
+    ScrollTrigger.refresh();
+  }
+});

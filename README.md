@@ -41,11 +41,20 @@ The six requested service categories are included. Final technical feasibility, 
 
 Book a Call links into contact until a booking URL is provided. The form includes name, reply email, website, service, budget, timeline, project details, and the selected pricing framework. It prepares a mailto draft to `alikhanharis515@gmail.com`; it does not send, store, or transmit enquiries automatically. A copy fallback is available. Direct web submissions need a verified backend endpoint and implementation. Social icons have no unverified destination links.
 
-## Motion and accessibility
+## Motion libraries and accessibility
 
-The Shopify bag uses genuine CSS 3D surfaces, a vector mark, studio shading, and GSAP motion; no WebGL/model download is needed. The storefront overlay is an original design study. GSAP provides restrained masked entrances, viewport reveals, timeline progress, sequential storefront/code/responsive/check stages, anchor scrolling, and desktop-only pointer effects. Native wheel/touch scrolling is preserved. Continuous decorative motion pauses offscreen and in hidden tabs.
+Each library owns a separate responsibility:
 
-Reduced-motion users get static visuals and native navigation. Mobile menu uses focus containment, Escape dismissal, inert background content, and focus restoration. Pricing/stage tabs support arrow/Home/End keys and ARIA relationships. FAQ starts with native details semantics and adds reversible height animation. A no-JavaScript navigation/email fallback is available.
+- **GSAP + ScrollTrigger**: main entrances, page exits/entrances, viewport reveals, timeline progress, desktop process pinning, and storefront storytelling.
+- **SplitType**: accessible word-level hero reveals; the original heading is preserved as its accessible name and splitting is reverted for reduced motion.
+- **Lenis**: desktop wheel smoothing tied to GSAP’s ticker and ScrollTrigger updates. Touch scrolling stays native; reduced motion removes Lenis. Menus and textareas keep native nested scrolling.
+- **Three.js + React Three Fiber + Drei**: a real extruded Shopify bag with modeled handles, separate side materials, SVG-derived logo geometry, a PerspectiveCamera, studio lighting, and ContactShadows. The scene is a lazy React island; semantic page content remains prerendered HTML.
+- **Motion for React**: a scroll-aware return-to-top component with controlled presence/hover/press transitions, loaded only after scrolling.
+- **Swiper**: accessible, non-autoplay portfolio/review sliders with touch gestures, keyboard navigation, pagination, and previous/next controls, loaded near their sections.
+
+Desktop 3D loads on idle when visible. Mobile offers **Explore in 3D** so the initial load remains light. The mobile scene uses DPR 1 and omits contact shadows; desktop DPR is capped at 1.5. Rendering stops offscreen or in hidden tabs. Reduced-motion users and browsers without WebGL retain the static bag/storefront illustration. No external model, texture, or HDR download is needed. The heavy Three.js scene is a separate dynamic chunk, not part of initial page JavaScript.
+
+Native content, pricing, FAQ, contact, and the requested section order remain intact. GSAP owns page motion, R3F owns the 3D object, Motion owns its button, and Swiper owns slides; effects are not layered over the same transforms. Ordinary touch scrolling is preserved. The mobile menu retains focus containment, Escape dismissal, inert background content, and focus restoration. Tabs support arrow/Home/End keys; FAQ retains native details semantics and reduced-motion fallback. No-JavaScript navigation/email remains available.
 
 ## SEO
 
@@ -61,4 +70,7 @@ npm test
 
 `CHROME_PATH` overrides `/usr/bin/chromium`; `TEST_URL` overrides `http://127.0.0.1:4173`. Checks cover 1440, 1024, 768, 390, 375, and 320px layouts; section order; all seven steps/six services; mobile navigation; pricing/stage keyboard controls; FAQ; full email draft; all ten detail pages; metadata; and the no-JavaScript fallback. Lab performance scores do not establish deployed Core Web Vitals or search rankings.
 
-Latest local mobile Lighthouse audit: **98 performance, 100 accessibility, 100 best practices, 100 SEO**; LCP 1.9s, TBT 100ms, CLS 0.001. The animated mobile-menu focus trap, Escape dismissal, and focus restoration were also checked. These are local lab observations, not production field measurements.
+
+The dedicated library test is `npm run test:motion`. It verifies actual WebGL rendering using Chromium’s software renderer, Lenis activation, SplitType markup, both Swipers, Motion’s scroll control, and runtime reduced-motion cleanup. Browser lab measurements depend on rendering support and hardware; production Core Web Vitals must be checked after deployment.
+
+Latest mobile lab audit after library integration: **97 performance, 100 accessibility, 100 best practices, 100 SEO**; LCP 2.0s, TBT 120ms, CLS 0.035. This measures the initial mobile experience before opting into 3D; desktop automatically loads the WebGL scene. The separate WebGL test validates the real renderer, while deployed GPU performance and field Core Web Vitals remain to be measured.
