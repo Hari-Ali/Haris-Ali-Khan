@@ -1,0 +1,8 @@
+Satoshi
+Designed by Deni Anggara. © 2023 Indian Type Foundry.
+Official font page: https://www.fontshare.com/fonts/satoshi
+License information: https://www.fontshare.com/licenses/itf-free-font-license
+
+Bundled Satoshi-Variable.woff2 sourced from the public TailAdmin repository:
+https://github.com/TailAdmin/free-react-tailwind-admin-dashboard/blob/48e3f9b28ec7095d93ac96b7fe0840e9d12d8725/src/fonts/Satoshi-Variable.woff2
+The accompanying source CSS identifies the font designer and copyright above.
