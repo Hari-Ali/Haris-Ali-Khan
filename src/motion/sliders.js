@@ -50,7 +50,7 @@ export function mountSliders(reduced) {
     1001: { slidesPerView: 2, spaceBetween: 30 },
   });
   setup(".reviews-swiper", "review placeholder", {
-    701: { slidesPerView: 2, spaceBetween: 28 },
+    701: { slidesPerView: 1, spaceBetween: 28 },
   });
   return () => instances.forEach((cleanup) => cleanup());
 }

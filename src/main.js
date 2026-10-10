@@ -1,5 +1,6 @@
-import "@fontsource/inter/latin-400.css";
-import "@fontsource/inter/latin-500.css";
+import "@fontsource/manrope/latin-800.css";
+import "@fontsource/dm-sans/latin-400.css";
+import "@fontsource/dm-sans/latin-500.css";
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -301,6 +302,24 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       scrollTrigger: { trigger: element, start: "top 94%", once: true },
     }),
   );
+  // Scrub the storefront into its resting composition; no perpetual motion.
+  if (document.querySelector(".hero-store-window")) {
+    gsap.to(".hero-store-window", {
+      rotation: 0, y: -22, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
+    });
+  }
+  document.querySelectorAll(".service-art svg").forEach((art) => {
+    const paths = [...art.querySelectorAll("path")].filter(path => path.getTotalLength() > 80);
+    paths.forEach(path => {
+      const length = path.getTotalLength();
+      gsap.fromTo(path, { strokeDasharray: length, strokeDashoffset: length }, {
+        strokeDashoffset: 0, duration: 1.1, ease: "power2.out",
+        scrollTrigger: { trigger: art, start: "top 85%", once: true },
+        onComplete: () => gsap.set(path, { clearProps: "strokeDasharray,strokeDashoffset" }),
+      });
+    });
+  });
   const track = document.querySelector(".timeline");
   if (track) {
     gsap.to(".timeline-progress", {

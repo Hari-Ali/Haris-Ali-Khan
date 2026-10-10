@@ -3,6 +3,15 @@ import { services, steps, faqs, articles } from "./site-content.mjs";
 import { arrow, escape, head, header, footer, end } from "./templates.mjs";
 const icon = (i) =>
   `<svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">${['<rect x="7" y="8" width="26" height="24" rx="1"/><path d="M7 15h26M15 15v17"/>', '<path d="m14 10-10 10 10 10m12-20 10 10-10 10m-3-24-6 28"/>', '<circle cx="20" cy="20" r="14"/><path d="m20 20 9-9M9 20h3m8 8v3"/>', '<path d="M5 7h4l4 20h18l4-14H10M17 32h1m11 0h1"/>', '<rect x="3" y="7" width="12" height="26" rx="2"/><rect x="25" y="7" width="12" height="26" rx="2"/><path d="M15 17h10m-10 7h10"/>', '<path d="M8 22v-4a12 12 0 0 1 24 0v4M8 17H4v12h7V17H8m24 0h4v12h-7V17h3m0 12c0 5-6 5-9 5"/>'][i]}</svg>`;
+// Original vector compositions: illustrative service diagrams, not client assets.
+const serviceArt = (i) => `<div class="service-art art-${i}" aria-hidden="true"><svg viewBox="0 0 480 240" fill="none" xmlns="http://www.w3.org/2000/svg">${[
+  '<rect x="40" y="20" width="310" height="192" rx="3"/><path d="M40 48h310M60 34h4m8 0h4m8 0h4"/><path d="M66 79h107m-107 17h72m-72 17h92"/><rect x="218" y="67" width="107" height="121"/><path d="M260 93c-30 0-38 44-17 57 24 14 63-14 41-39-5-6-14-9-24-18Z"/><rect x="309" y="85" width="112" height="143" rx="9"/><path d="M329 107h71m-71 14h49M329 153h71v54h-71z"/>',
+  '<path d="m110 77-47 43 47 43m260-86 47 43-47 43m-89-116-53 146"/><path d="M148 80h58m-58 21h37m61 40h66m-66 21h44"/><rect x="30" y="25" width="420" height="190" rx="4"/>',
+  '<circle cx="240" cy="125" r="88"/><path d="M161 160a88 88 0 0 1 135-106" stroke-width="12"/><path d="m240 125 47-44M152 125h16m144 0h16M240 37v16"/><circle cx="240" cy="125" r="6"/><path d="M191 185h98"/>',
+  '<rect x="58" y="31" width="190" height="178" rx="4"/><path d="M78 61h87m-87 19h59M78 113h38v42H78zM133 117h88m-88 17h59M78 181h143"/><rect x="279" y="56" width="145" height="133" rx="4"/><path d="m322 108 17 17 40-43M301 157h101M248 117h31"/>',
+  '<rect x="45" y="80" width="91" height="80" rx="10"/><rect x="195" y="47" width="91" height="146" rx="10"/><rect x="345" y="80" width="91" height="80" rx="10"/><path d="M136 120h59m91 0h59M218 79h45m-45 21h45m-45 21h25m-25 40h45"/><circle cx="91" cy="120" r="18"/><path d="m375 108 12 12-12 12m19-24 12 12-12 12"/>',
+  '<path d="M40 166h400M40 118h400M40 70h400"/><path d="m49 155 75-32 63 14 74-63 65 21 104-66" stroke-width="3"/><circle cx="261" cy="74" r="8"/><path d="M261 74v120" stroke-dasharray="4 5"/>'
+][i]}</svg><span>${['STOREFRONT / RESPONSIVE SYSTEM','LIQUID / CUSTOM LOGIC','PERFORMANCE / MEASURE & REFINE','CHECKOUT / CUSTOMER JOURNEY','INTEGRATIONS / CONNECTED SYSTEMS','SUPPORT / CONTINUOUS CARE'][i]}</span></div>`;
 function pricing(mode) {
   const names = ["Starter", "Professional", "Enterprise"];
   const descriptions =
@@ -49,7 +58,7 @@ const parts = {
   SERVICES: services
     .map(
       (s, i) =>
-        `<article class="service-panel service reveal"><div class="service-panel-top"><span>0${i + 1} / ${s.tag}</span>${icon(i)}</div><h3>${s.title}</h3><p>${s.description}</p><ul>${s.features.map((f) => `<li>${escape(f)}</li>`).join("")}</ul><a href="/services/${s.slug}/">Explore the service <span class="service-arrow">${arrow}</span></a></article>`,
+        `<article class="service-panel service service-${i} reveal"><div class="service-panel-top"><span>0${i + 1} / ${s.tag}</span>${icon(i)}</div>${serviceArt(i)}<div class="service-content"><h3>${s.title}</h3><p>${s.description}</p><ul>${s.features.map((f) => `<li>${escape(f)}</li>`).join("")}</ul><a href="/services/${s.slug}/">Explore the service <span class="service-arrow">${arrow}</span></a></div></article>`,
     )
     .join(""),
   FAQ: faqs

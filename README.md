@@ -1,6 +1,6 @@
 # HUR Solution — premium Shopify & digital studio
 
-A complete multi-page editorial redesign for Haris Ali Khan. Built with Vite, semantic HTML, CSS, JavaScript, GSAP/ScrollTrigger, and locally served Satoshi, Inter, and IBM Plex Mono. The palette is charcoal/off-white with restrained #ED176A accents and a light case-study section.
+A complete multi-page editorial redesign for Haris Ali Khan. Built with Vite, semantic HTML, CSS, JavaScript, GSAP/ScrollTrigger, and locally served Manrope ExtraBold, DM Sans, and IBM Plex Mono. The visual system uses ink charcoal, mineral blue, off-white, and contrasting paper sections.
 
 ## Run and deploy
 
@@ -23,7 +23,8 @@ The homepage keeps the requested complete sequence: hero → trust → about →
 - `scripts/site-content.mjs`: service copy, ordered process steps, FAQ answers, and original article content.
 - `scripts/templates.mjs`: shared metadata, navigation, header, footer, and icon helper.
 - `scripts/generate-pages.mjs`: composes the homepage and generates crawlable detail pages and sitemap.
-- `src/style.css`: typography, grid, layout, materials, responsive breakpoints, and motion fallbacks.
+- `src/style.css`: baseline components, accessibility, library islands, and motion fallbacks.
+- `src/atelier.css`: the complete editorial art direction, typography, asymmetric service compositions, and responsive layouts.
 - `src/main.js`: menus, tabs, accessible controls, GSAP effects, and enquiry preparation.
 - `src/site-config.js`: verified contact email; booking URL and form endpoint remain unconfigured.
 
@@ -58,7 +59,7 @@ Native content, pricing, FAQ, contact, and the requested section order remain in
 
 ## SEO
 
-Each service and guide has its own title, description, canonical, Open Graph metadata, and descriptive URL. Organization metadata is used on the homepage; Article metadata is used for guides. Sitemap includes ten real content URLs and excludes the noindex placeholder case study. No review, rating, or ineligible FAQ rich-result claims are generated. Satoshi attribution/source is in `public/fonts/NOTICE.txt`; Inter and IBM Plex Mono licenses are retained in their packages. The site is not affiliated with Shopify.
+Each service and guide has its own title, description, canonical, Open Graph metadata, and descriptive URL. Organization metadata is used on the homepage; Article metadata is used for guides. Sitemap includes ten real content URLs and excludes the noindex placeholder case study. No review, rating, or ineligible FAQ rich-result claims are generated. Manrope, DM Sans, and IBM Plex Mono licenses are retained in their packages. The unused legacy Satoshi asset retains its attribution in `public/fonts/NOTICE.txt`. The site is not affiliated with Shopify.
 
 ## Browser tests
 
@@ -73,4 +74,4 @@ npm test
 
 The dedicated library test is `npm run test:motion`. It verifies actual WebGL rendering using Chromium’s software renderer, Lenis activation, SplitType markup, both Swipers, Motion’s scroll control, and runtime reduced-motion cleanup. Browser lab measurements depend on rendering support and hardware; production Core Web Vitals must be checked after deployment.
 
-Latest mobile lab audit after library integration: **97 performance, 100 accessibility, 100 best practices, 100 SEO**; LCP 2.0s, TBT 120ms, CLS 0.035. This measures the initial mobile experience before opting into 3D; desktop automatically loads the WebGL scene. The separate WebGL test validates the real renderer, while deployed GPU performance and field Core Web Vitals remain to be measured.
+Latest mobile lab audit after the editorial overhaul: **96 performance, 100 accessibility, 100 best practices, 100 SEO**; LCP 1.9s, TBT 150ms, CLS 0.044. This measures the initial mobile experience before opting into 3D; desktop automatically loads the WebGL scene. The separate WebGL test validates the real renderer, while deployed GPU performance and field Core Web Vitals remain to be measured.

@@ -1,11 +1,5 @@
-@font-face {
-  font-family: Satoshi;
-  src: url("/fonts/Satoshi-Variable.woff2") format("woff2");
-  font-weight: 300 900;
-  font-display: swap;
-}
 :root {
-  font-family: Inter, Arial, sans-serif;
+  font-family: "DM Sans", Arial, sans-serif;
   color: #f1f0ed;
   background: #161619;
   font-synthesis: none;
@@ -81,7 +75,7 @@ textarea:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 .logo {
-  font-family: Satoshi, Inter, sans-serif;
+  font-family: Manrope, "DM Sans", sans-serif;
   font-size: 40px;
   font-weight: 900;
   letter-spacing: -3px;
@@ -156,7 +150,7 @@ nav a:hover {
 h1,
 h2,
 h3 {
-  font-family: Satoshi, Inter, sans-serif;
+  font-family: Manrope, "DM Sans", sans-serif;
 }
 h1 {
   font-size: clamp(72px, 7.55vw, 112px);
@@ -451,7 +445,7 @@ h1 {
   font-size: 7px;
 }
 .intro > p {
-  font-family: Satoshi, Inter, sans-serif;
+  font-family: Manrope, "DM Sans", sans-serif;
   font-size: 34px;
   letter-spacing: -1.2px;
   line-height: 1.5;
@@ -569,7 +563,7 @@ h2 > span {
 .concept-nav {
   display: flex;
   justify-content: space-between;
-  font-family: Satoshi, Inter, sans-serif;
+  font-family: Manrope, "DM Sans", sans-serif;
   font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.8px;
@@ -673,7 +667,7 @@ h2 > span {
   overflow: hidden;
 }
 .assembly-art > span {
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-size: 270px;
   font-weight: 900;
   letter-spacing: -25px;
@@ -771,7 +765,7 @@ h2 > span {
   margin-top: 8px;
 }
 .studio-right > .large {
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-size: 28px;
   letter-spacing: -0.7px;
   line-height: 1.45;
@@ -1706,7 +1700,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: Satoshi, Inter, sans-serif;
+  font-family: Manrope, "DM Sans", sans-serif;
 }
 h1 {
   font-weight: 700;
@@ -1843,7 +1837,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 24px;
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-size: 32px;
   line-height: 1.5;
   padding: 9px 0;
@@ -1963,7 +1957,7 @@ a:hover {
   letter-spacing: 0.7px;
 }
 .mini-store > strong {
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   display: block;
   font-size: 25px;
   line-height: 1.05;
@@ -2008,7 +2002,7 @@ a:hover {
   gap: 20px;
 }
 .logo-slots > span {
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-size: 17px;
   color: #aaaab0;
   font-weight: 700;
@@ -2033,7 +2027,7 @@ a:hover {
   font-size: 49px;
 }
 .about-copy .large {
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-size: 27px;
   line-height: 1.4;
   letter-spacing: -0.6px;
@@ -2115,7 +2109,7 @@ a:hover {
 .store-nav {
   display: flex;
   justify-content: space-between;
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-weight: 700;
   font-size: 17px;
   letter-spacing: -0.5px;
@@ -2237,7 +2231,7 @@ a:hover {
   margin: 15px auto;
 }
 .responsive-phone > p {
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-size: 10px;
   line-height: 1.2;
 }
@@ -2682,7 +2676,7 @@ a:hover {
   padding: 23px 0 25px;
 }
 .review-placeholder > p {
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-size: 23px;
   line-height: 1.45;
   letter-spacing: -0.5px;
@@ -2792,7 +2786,7 @@ a:hover {
 }
 .price-card > strong {
   display: block;
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-size: 24px;
   font-weight: 500;
   letter-spacing: -0.6px;
@@ -3024,7 +3018,7 @@ tbody td {
   height: 14px;
 }
 .oversized-wordmark {
-  font-family: Satoshi, sans-serif;
+  font-family: Manrope, sans-serif;
   font-weight: 900;
   font-size: clamp(40px, 11.7vw, 180px);
   letter-spacing: -0.065em;
