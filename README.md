@@ -17,7 +17,7 @@ Build outputs the homepage, six service pages, three original journal guides, an
 
 ## Structure and editing
 
-The homepage keeps the requested complete sequence: hero → trust → about → seven-step process → six services → work → cases → reviews → FAQ → pricing → journal → contact → footer.
+The homepage keeps the requested complete sequence: hero → about → seven-step process → six services → work → cases → reviews → FAQ → pricing → journal → contact → footer.
 
 - `src/home.html`: editable homepage template; preserves the existing HUR hero, profile, design studies, FAQ, and enquiry flow.
 - `scripts/site-content.mjs`: service copy, ordered process steps, FAQ answers, and original article content.
@@ -46,7 +46,7 @@ Book a Call links into contact until a booking URL is provided. The form include
 
 Each library owns a separate responsibility:
 
-- **GSAP + ScrollTrigger**: main entrances, page exits/entrances, viewport reveals, timeline progress, desktop process pinning, and storefront storytelling.
+- **GSAP + ScrollTrigger**: main entrances, page exits/entrances, viewport reveals, timeline progress, an unpinned process overview, and optional development storytelling.
 - **SplitType**: accessible word-level hero reveals; the original heading is preserved as its accessible name and splitting is reverted for reduced motion.
 - **Lenis**: desktop wheel smoothing tied to GSAP’s ticker and ScrollTrigger updates. Touch scrolling stays native; reduced motion removes Lenis. Menus and textareas keep native nested scrolling.
 - **Motion for React**: a scroll-aware return-to-top component with controlled presence/hover/press transitions, loaded only after scrolling.
@@ -71,8 +71,12 @@ npm test
 `CHROME_PATH` overrides `/usr/bin/chromium`; `TEST_URL` overrides `http://127.0.0.1:4173`. Checks cover 1440, 1024, 768, 390, 375, and 320px layouts; section order; all seven steps/six services; mobile navigation; pricing/stage keyboard controls; FAQ; full email draft; all ten detail pages; metadata; and the no-JavaScript fallback. Lab performance scores do not establish deployed Core Web Vitals or search rankings.
 
 
-The dedicated library test is `npm run test:motion`. It checks the real React Bits image stack, click/keyboard image changes, removal of rejected artwork, Lenis, SplitType, Swiper, the Motion scroll control, and reduced-motion restoration. Mobile Lighthouse after the photography redesign: **96 performance, 100 accessibility, 100 best practices, 100 SEO**. This measures the real interactive photo deck. Deployed Core Web Vitals remain to be measured.
+The dedicated library test is `npm run test:motion`. It checks the real React Bits image stack, click/keyboard image changes, removal of rejected artwork, Lenis, SplitType, Swiper, the Motion scroll control, and reduced-motion restoration. Mobile Lighthouse after simplification: **98 performance, 100 accessibility, 100 best practices, 100 SEO**. This measures the real interactive photo deck. Deployed Core Web Vitals remain to be measured.
 
 ### React Bits enhancements
 
 Selected components from [React Bits](https://reactbits.dev/) are vendored in `src/react-bits`: Stack and AnimatedContent for the hero photography, BlurText for the studio manifesto, TiltedCard for pointer-driven portfolio depth, and SpotlightCard for featured service lighting. These are adapted to preserve semantic HTML and the existing GSAP/Swiper responsibilities. Their upstream MIT + Commons Clause license is retained in that directory. No component marketplace or redistribution product is being created. The hero deck loads near the hero viewport; touch devices skip pointer effects and reduced-motion changes restore the original markup.
+
+### Focused homepage
+
+The simplified homepage presents a direct Shopify value proposition, one hero photo deck, concise services, an unpinned process overview, and complete FAQs. Development stages, case-study and testimonial placeholders, pricing comparison, and optional enquiry fields use native disclosure controls. All section IDs, detail pages, metadata, and honest placeholder labels are retained. Decorative hover effects and the oversized footer are removed from the active presentation.

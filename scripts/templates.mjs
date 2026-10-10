@@ -6,15 +6,7 @@ export const escape = (s) =>
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
-export const nav = [
-  ["Studio", "#studio"],
-  ["Process", "#process"],
-  ["Expertise", "#services"],
-  ["Work", "#work"],
-  ["Cases", "#cases"],
-  ["FAQ", "#faq"],
-  ["Pricing", "#pricing"],
-];
+export const nav = [["Expertise", "#services"], ["Work", "#work"], ["Process", "#process"], ["FAQ", "#faq"], ["Pricing", "#pricing"]];
 export function header(home = true) {
   const base = home ? "" : "/";
   return `<a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="header wrap"><a class="logo" href="/" aria-label="HUR Solution home">hur <span>solution</span></a><nav aria-label="Main navigation">${nav.map(([n, id]) => `<a href="${base}${id}">${n}</a>`).join("")}</nav><a class="header-cta magnetic" href="${base}#contact">Book a Call ${arrow}</a><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation"><span></span><span></span></button></div></header><div id="mobile-menu" class="mobile-menu" hidden><nav aria-label="Mobile navigation">${nav.map(([n, id], i) => `<a href="${base}${id}"><small>0${i + 1}</small>${n}${arrow}</a>`).join("")}</nav><a class="button primary" href="${base}#contact">Discuss a project ${arrow}</a><a class="menu-email" href="mailto:alikhanharis515@gmail.com">alikhanharis515@gmail.com</a></div><noscript><div class="nojs-note wrap">Browse: <a href="/#studio">Studio</a> · <a href="/#services">Services</a> · <a href="/#work">Work</a> · <a href="/#pricing">Pricing</a> · <a href="mailto:alikhanharis515@gmail.com">Email HUR Solution</a></div><style>#brief-form{display:none}</style></noscript>`;
@@ -28,7 +20,7 @@ export function head(
   path,
   { noindex = false, type = "website", schema = null } = {},
 ) {
-  return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101213"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="https://hursolution.com${path}">${noindex ? '<meta name="robots" content="noindex,follow">' : ""}<meta property="og:type" content="${type}"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="https://hursolution.com${path}"><meta property="og:image" content="https://hursolution.com/social-card.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/src/style.css"><link rel="stylesheet" href="/src/atelier.css">${schema ? `<script type="application/ld+json">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script>` : ""}</head><body>`;
+  return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101213"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="https://hursolution.com${path}">${noindex ? '<meta name="robots" content="noindex,follow">' : ""}<meta property="og:type" content="${type}"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="https://hursolution.com${path}"><meta property="og:image" content="https://hursolution.com/social-card.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/src/style.css"><link rel="stylesheet" href="/src/atelier.css">${schema ? `<script type="application/ld+json">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script>` : ""}</head><body class="simplified">`;
 }
 export const end =
   '<script type="module" src="/src/main.js"></script></body></html>';

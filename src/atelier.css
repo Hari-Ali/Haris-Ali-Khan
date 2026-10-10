@@ -276,3 +276,99 @@ caption { font-size:11px; }
 @media(max-width:1100px) { .hero-photo-stage { padding-left:45px; padding-right:10px; }.hero-image-stack { height:300px; }.photo-project-overlay h3 { font-size:36px; } }
 @media(max-width:760px) { .hero-photo-stage { grid-column:1; grid-row:2; padding:0 10px 0 22px; margin-top:30px; }.hero-image-stack { height:270px; margin-top:35px; }.photo-stage-label,.photo-stage-footer { font-size:9px; }.photo-stage-footer>span { max-width:180px; }.stack-next { font-size:12px; }.hero-layout { min-height:0; }.service-panel:nth-child(6) { grid-column:auto; }.photo-project-overlay { padding:26px; }.photo-project-overlay h3 { font-size:34px; }.photo-storefront { height:320px; }.photo-storefront .store-nav span { font-size:8px; }.responsive-photo-layout h3 { font-size:23px; }.responsive-photo-layout>div { padding:25px 14px; } }
 .hero-photo-stage { overflow:clip; }
+/* Focused presentation: one focal point, concise copy, details on demand. */
+.simplified .wrap { max-width:1200px; width:calc(100% - 80px); }
+.simplified .section { padding-block:64px; }
+.simplified .section-top { margin-bottom:22px; }
+.simplified .section-aside,.simplified .hero-top .edition,.simplified .hero-coordinate { display:none; }
+.simplified .hero-top { border:0; padding-bottom:5px; }
+.simplified .hero-layout { grid-template-columns:1.1fr 1fr; gap:50px; min-height:520px; padding-block:20px; }
+.simplified .hero-copy { max-width:600px; padding:30px 0; }
+.simplified .hero h1 { font-size:clamp(46px,4.8vw,72px); line-height:1.08; letter-spacing:-.055em; }
+.simplified .hero-accent { color:#a9baff; }
+.simplified .hero-description { margin-top:26px; }
+.simplified .hero-description p { max-width:430px; font-size:19px; }
+.simplified .hero-photo-stage { padding:25px; }
+.simplified .hero-image-stack { height:310px; margin-top:30px; }
+.simplified .photo-stage-label { display:none; }
+.simplified .hero-actions { gap:22px; }
+.simplified h2 { font-size:clamp(34px,3.8vw,52px); line-height:1.1; }
+.simplified .about-layout { grid-template-columns:1.25fr 1fr; align-items:center; gap:60px; }
+.simplified .about-copy>p { max-width:560px; font-size:17px; }
+.simplified .founder { border:0; padding:0; margin-top:25px; }
+.secondary-details { border-block:1px solid var(--line); color:inherit; }
+.secondary-details>summary { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:22px 0; font-size:17px; cursor:pointer; list-style:none; }
+.secondary-details>summary::-webkit-details-marker { display:none; }
+.secondary-details>summary>span { font-size:24px; font-weight:400; }
+.secondary-details[open]>summary>span { transform:rotate(45deg); }
+.secondary-details[open]>.about-showcase { margin-bottom:25px; }
+.simplified .process-section { background:#171a1c; color:var(--paper); }
+.simplified .process-section .eyebrow { color:var(--muted); }
+.simplified .process-layout { display:block; }
+.simplified .process-intro { position:static; display:grid; grid-template-columns:1fr 1fr; gap:15px 60px; margin-bottom:35px; }
+.simplified .process-intro>p { color:var(--muted); margin:0; font-size:17px; max-width:400px; }
+.simplified .process-intro .text-link { color:var(--paper); grid-column:2; }
+.simplified .timeline { padding:0; display:grid; grid-template-columns:repeat(4,1fr); gap:25px; }
+.simplified .timeline-track,.simplified .timeline-dot { display:none; }
+.simplified .timeline-item { display:block; padding:20px 0; border-color:var(--line); }
+.simplified .timeline-number,.simplified .timeline-item.active .timeline-number { font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0; color:var(--accent); }
+.simplified .timeline-item h3 { font-size:21px; margin-top:16px; }
+.simplified .timeline-item p { font-size:15px; color:var(--muted); }
+.simplified .services-section .section-heading { grid-template-columns:1fr 1fr; }
+.simplified .section-heading { margin-bottom:32px; }
+.simplified .service-panels { grid-template-columns:repeat(3,1fr); gap:24px; }
+.simplified .service-panel,.simplified .service-panel:nth-child(1),.simplified .service-panel:nth-child(2),.simplified .service-panel:nth-child(6) { grid-column:auto; background:transparent; color:var(--paper); padding:24px 0; border-top:1px solid var(--line); display:flex; }
+.simplified .service-panel-top { display:none; }
+.simplified .service-content h3 { font-size:24px; }
+.simplified .service-content>p { color:var(--muted); font-size:16px; }
+.service-scope { margin-bottom:20px; }
+.service-scope summary { font-size:13px; color:var(--muted); cursor:pointer; }
+.service-scope ul { margin-top:16px; }
+.simplified .work-section { width:100%; padding-inline:40px; background:transparent; }
+.simplified .portfolio-swiper .work-image { height:380px; }
+.simplified .photo-project-overlay h3 { font-size:32px; }
+.simplified .work-caption h3 { font-size:24px; }
+.simple-note { font-size:14px; color:var(--muted); margin-top:24px; }
+.simple-note a { display:inline-flex; align-items:center; gap:8px; margin-left:8px; text-decoration:underline; }
+.simplified .cases-section { background:transparent; color:var(--paper); }
+.simplified .cases-section .section-heading p,.simplified .cases-section .eyebrow { color:var(--muted); }
+.simplified .cases-section .case-story { background:var(--paper); color:#171a1c; padding:30px; }
+.simplified .cases-section .case-panel { padding-bottom:30px; gap:30px; }
+.simplified .cases-section h2,.simplified .reviews-section h2,.simplified .journal-section h2 { font-size:36px; }
+.simplified .cases-section .section-heading,.simplified .reviews-section .section-heading,.simplified .journal-section .section-heading { margin-bottom:20px; }
+.simplified .cases-section .section-top,.simplified .reviews-section .section-top,.simplified .journal-section .section-top { display:none; }
+.simplified .cases-section .section,.simplified .reviews-section,.simplified .journal-section { padding-block:35px; }
+.simplified .reviews-layout { padding-block:25px; }
+.simplified .faq h2 { font-size:48px; }
+.simplified .faq-list summary { font-size:18px; padding-block:20px; }
+.simplified .price-card { padding:28px 24px; }
+.simplified .price-card h3 { font-size:28px; }
+.simplified .price-card li { font-size:14px; padding-block:10px; }
+.simplified .price-top,.simplified .comparison-wrap caption { display:none; }
+.simplified .price-card>p { margin:16px 0; }
+.simplified .price-card>strong { font-size:24px; }
+.simplified .price-card>small { font-size:9px; }
+.simplified .comparison-details { margin-top:25px; }
+.simplified .comparison-wrap { margin-top:0; margin-bottom:20px; }
+.simplified .journal-card { grid-template-columns:1fr 1.5fr; gap:12px 30px; padding:20px 0; }
+.simplified .journal-number,.simplified .journal-card>p { display:none; }
+.simplified .journal-card .eyebrow { grid-column:1; grid-row:1; }
+.simplified .journal-card h3 { grid-column:2; grid-row:1/3; font-size:23px; }
+.simplified .journal-link { grid-column:1; grid-row:2; }
+.simplified .contact { padding-block:60px; }
+.simplified .contact-title h2 { font-size:clamp(40px,5.5vw,76px); }
+.simplified .contact-mark { display:none; }
+.simplified .contact-layout { margin-top:35px; gap:60px; }
+.simplified .contact-layout>p { font-size:18px; }
+.simplified .contact .booking-contact { display:none; }
+.simplified .contact .section-top { display:none; }
+.simplified .oversized-wordmark,.simplified .social-placeholders,.simplified .footer-note { display:none; }
+.simplified .footer-grid { padding-block:35px; }
+@media(max-width:760px) {
+.simplified .wrap { width:calc(100% - 40px); }.simplified .section { padding-block:48px; }.simplified .hero-layout { display:block; padding-top:5px; }.simplified .hero-copy { padding:25px 0; }.simplified .hero h1 { font-size:clamp(34px,8.7vw,58px); }.simplified .hero-description p { font-size:17px; }.simplified .hero-photo-stage { padding:0 10px 0 20px; margin:15px 0 20px; }.simplified .hero-image-stack { height:245px; }.simplified .about-layout { display:block; }.about-details { margin-top:28px; }.simplified .process-intro { display:block; }.simplified .process-intro>p { margin:20px 0; }.simplified .timeline { grid-template-columns:1fr 1fr; gap:20px; }.simplified .timeline-item h3 { font-size:19px; }.simplified .timeline-item p { font-size:14px; }.simplified .service-panels { grid-template-columns:1fr; gap:0; }.simplified .services-section .section-heading { display:block; }.simplified .service-content h3 { font-size:24px; }.simplified .work-section { padding-inline:20px; width:100%; }.simplified .portfolio-swiper .work-image { height:330px; }.simple-note a { margin:10px 0 0; }.simplified .cases-section .case-panel { display:block; }.simplified .case-story { margin-top:0; }.simplified .cases-section .section,.simplified .reviews-section,.simplified .journal-section { padding-block:28px; }.simplified .journal-card { display:block; }.simplified .journal-card h3 { margin:12px 0; }.simplified .journal-card .eyebrow { display:block; }.simplified .contact-layout { display:block; }.simplified .contact-title h2 { font-size:42px; }.simplified .footer-grid { gap:24px; }
+}
+.simplified .contact-options { margin-top:22px; border-color:#8da1ae; }
+.simplified .contact-options>summary { font-size:14px; padding-block:15px; }
+.simplified .contact-options label { margin-top:12px; }
+.simplified .contact-options .brief-fields { margin-bottom:20px; }
+.simplified .portfolio-swiper:not(.swiper-initialized) { display:block; width:100%; }

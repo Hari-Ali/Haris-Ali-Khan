@@ -51,6 +51,7 @@ try {
     active,
     "Portfolio slide did not change",
   );
+  await page.locator(".reviews-details > summary").click();
   await page.locator(".reviews-swiper").scrollIntoViewIfNeeded();
   await page.getByRole("button", { name: "Next review placeholder" }).click();
   await page.waitForTimeout(800);
@@ -75,8 +76,8 @@ try {
     .click();
   await page.waitForTimeout(1100);
   assert.ok(
-    (await page.locator(".pin-spacer").count()) > 0,
-    "GSAP pin missing",
+    (await page.locator(".pin-spacer").count()) === 0,
+    "Simplified process must not pin the page",
   );
   await page.locator("#services").scrollIntoViewIfNeeded();
   await page.getByRole("link", { name: "Explore the service" }).first().click();

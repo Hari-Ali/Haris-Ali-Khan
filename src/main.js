@@ -367,7 +367,7 @@ mm.add(
     const cleanups = [];
     const processLayout = document.querySelector(".process-layout");
     const processIntro = document.querySelector(".process-intro");
-    if (processLayout && processIntro) {
+    if (processLayout && processIntro && !document.body.classList.contains("simplified")) {
       gsap.set(processIntro, { position: "relative", top: 0 });
       ScrollTrigger.create({
         trigger: processLayout,
@@ -602,4 +602,9 @@ window.addEventListener("pageshow", (event) => {
     gsap.set(main, { clearProps: "opacity,transform" });
     ScrollTrigger.refresh();
   }
+});
+
+// Native disclosure keeps secondary content available without crowding the page.
+document.querySelectorAll(".secondary-details").forEach(details => {
+  details.addEventListener("toggle", () => requestAnimationFrame(() => ScrollTrigger.refresh()));
 });

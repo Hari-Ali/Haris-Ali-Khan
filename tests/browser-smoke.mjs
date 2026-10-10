@@ -61,6 +61,7 @@ try {
     assert.equal(await page.locator("#pricing-project").isVisible(), false);
     await page.keyboard.press("ArrowLeft");
     assert.equal(await page.locator("#pricing-project").isVisible(), true);
+    await page.getByText("See the development approach", {exact:false}).click();
     await page.getByRole("tab", { name: "02 / THE CODE" }).click();
     assert.equal(await page.locator("#stage-1").isVisible(), true);
     await page.keyboard.press("End");

@@ -3,7 +3,7 @@ import { services, steps, faqs, articles } from "./site-content.mjs";
 import { arrow, escape, head, header, footer, end } from "./templates.mjs";
 const icon = (i) =>
   `<svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">${['<rect x="7" y="8" width="26" height="24" rx="1"/><path d="M7 15h26M15 15v17"/>', '<path d="m14 10-10 10 10 10m12-20 10 10-10 10m-3-24-6 28"/>', '<circle cx="20" cy="20" r="14"/><path d="m20 20 9-9M9 20h3m8 8v3"/>', '<path d="M5 7h4l4 20h18l4-14H10M17 32h1m11 0h1"/>', '<rect x="3" y="7" width="12" height="26" rx="2"/><rect x="25" y="7" width="12" height="26" rx="2"/><path d="M15 17h10m-10 7h10"/>', '<path d="M8 22v-4a12 12 0 0 1 24 0v4M8 17H4v12h7V17H8m24 0h4v12h-7V17h3m0 12c0 5-6 5-9 5"/>'][i]}</svg>`;
-const serviceArt = (i) => i < 2 ? `<div class="service-photo"><img src="/images/${i === 0 ? 'workspace' : 'timepieces'}.jpg" width="600" height="450" loading="lazy" alt="Stock product photography illustrating ${i === 0 ? 'storefront design' : 'product presentation'}"/><span>STOCK PHOTOGRAPHY / VISUAL DIRECTION</span></div>` : '';
+const serviceArt = () => '';
 function pricing(mode) {
   const names = ["Starter", "Professional", "Enterprise"];
   const descriptions =
@@ -50,7 +50,7 @@ const parts = {
   SERVICES: services
     .map(
       (s, i) =>
-        `<article class="service-panel service service-${i} reveal"><div class="service-panel-top"><span>0${i + 1} / ${s.tag}</span>${icon(i)}</div>${serviceArt(i)}<div class="service-content"><h3>${s.title}</h3><p>${s.description}</p><ul>${s.features.map((f) => `<li>${escape(f)}</li>`).join("")}</ul><a href="/services/${s.slug}/">Explore the service <span class="service-arrow">${arrow}</span></a></div></article>`,
+        `<article class="service-panel service service-${i} reveal"><div class="service-panel-top"><span>0${i + 1} / ${s.tag}</span>${icon(i)}</div>${serviceArt(i)}<div class="service-content"><h3>${s.title}</h3><p>${s.description}</p><details class="service-scope"><summary>Possible scope +</summary><ul>${s.features.map((f) => `<li>${escape(f)}</li>`).join("")}</ul></details><a href="/services/${s.slug}/">Explore the service <span class="service-arrow">${arrow}</span></a></div></article>`,
     )
     .join(""),
   FAQ: faqs

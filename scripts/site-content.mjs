@@ -4,7 +4,7 @@ export const services = [
     title: "Custom Theme Development",
     tag: "DESIGN / STOREFRONTS",
     description:
-      "Whether you need a theme built from scratch or want to make your current one work for your brand, we start with the experience your customers need.",
+      "New storefronts and theme redesigns shaped around your brand and customers.",
     features: [
       "Theme OS 2.0 architecture",
       "Custom sections & blocks",
@@ -19,7 +19,7 @@ export const services = [
     title: "Liquid Development",
     tag: "CODE / CUSTOM LOGIC",
     description:
-      "Advanced Liquid templating for functionality that a standard theme cannot express. Built around your requirements and the capabilities of Shopify.",
+      "Custom sections, templates, and product features beyond a standard theme.",
     features: [
       "Custom product experiences",
       "Metafield integration",
@@ -34,7 +34,7 @@ export const services = [
     title: "Speed & Performance",
     tag: "AUDIT / REFINEMENT",
     description:
-      "Find the friction in your storefront. Refine loading, navigation, and mobile usability around measurable priorities.",
+      "Measure and improve loading speed, navigation, and mobile usability.",
     features: [
       "PageSpeed analysis",
       "Lazy loading setup",
@@ -49,7 +49,7 @@ export const services = [
     title: "Checkout & Cart Solutions",
     tag: "COMMERCE / EXPERIENCE",
     description:
-      "Considered cart flows, product discovery, and checkout-adjacent experiences that help customers understand their next step.",
+      "Clearer cart flows and checkout features, within your Shopify plan’s capabilities.",
     features: [
       "Checkout UI extensions where supported",
       "Cart drawer customization",
@@ -64,7 +64,7 @@ export const services = [
     title: "App Integration",
     tag: "SYSTEMS / CONNECTIONS",
     description:
-      "Connect your storefront with the tools your business relies on. Start with the right integration, permissions, and data flow.",
+      "Connect your store with business tools through agreed APIs and data flows.",
     features: [
       "ERP/CRM integration review",
       "Custom API development",
@@ -79,7 +79,7 @@ export const services = [
     title: "Ongoing Support",
     tag: "CARE / CONTINUITY",
     description:
-      "Things change. Discuss the fixes, feature updates, and ongoing refinements your storefront needs as your business develops.",
+      "Fixes, feature updates, and ongoing improvements with agreed support terms.",
     features: [
       "Bug fixes & troubleshooting",
       "Feature updates",
@@ -121,6 +121,7 @@ export const steps = [
   ],
 ];
 export const faqs = [
+  ["Who is HUR Solution for?", "Brands starting a Shopify store or improving an existing one. We can discuss a focused fix, a full redesign, or ongoing support. Share your goals so we can confirm the right fit and scope."],
   [
     "Can we improve an existing Shopify store?",
     "Yes. Share your theme, store URL, and the issues you want to solve. We can discuss a focused refinement or a broader redesign without assuming a full rebuild is necessary.",
