@@ -242,7 +242,6 @@ reduced.addEventListener("change", () => {
     }
   });
 });
-const scene = document.querySelector(".scene");
 mm.add("(prefers-reduced-motion: no-preference)", () => {
   const cleanup = [];
   enableSmoothScroll();
@@ -281,12 +280,6 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
         { opacity: 0, y: 14, duration: 0.75, stagger: 0.1 },
         0.3,
       )
-      .from(".bag-float", { opacity: 0, rotationY: -15, duration: 1.2 }, 0.15)
-      .from(
-        ".hero-store-window",
-        { opacity: 0, y: 17, rotation: -7, duration: 0.9 },
-        0.7,
-      )
       .from(
         ".hero-expertise,.hero-bottom",
         { opacity: 0, duration: 0.7 },
@@ -302,24 +295,6 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
       scrollTrigger: { trigger: element, start: "top 94%", once: true },
     }),
   );
-  // Scrub the storefront into its resting composition; no perpetual motion.
-  if (document.querySelector(".hero-store-window")) {
-    gsap.to(".hero-store-window", {
-      rotation: 0, y: -22, ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
-    });
-  }
-  document.querySelectorAll(".service-art svg").forEach((art) => {
-    const paths = [...art.querySelectorAll("path")].filter(path => path.getTotalLength() > 80);
-    paths.forEach(path => {
-      const length = path.getTotalLength();
-      gsap.fromTo(path, { strokeDasharray: length, strokeDashoffset: length }, {
-        strokeDashoffset: 0, duration: 1.1, ease: "power2.out",
-        scrollTrigger: { trigger: art, start: "top 85%", once: true },
-        onComplete: () => gsap.set(path, { clearProps: "strokeDasharray,strokeDashoffset" }),
-      });
-    });
-  });
   const track = document.querySelector(".timeline");
   if (track) {
     gsap.to(".timeline-progress", {
@@ -533,72 +508,6 @@ if (form) {
 }
 const libraryCleanup = [];
 window.addEventListener("hur:scroll-top", () => scrollTo(0, { offset: 0 }));
-let sceneUnmount;
-let sceneLoading = false;
-async function loadScene() {
-  if (
-    !scene ||
-    reduced.matches ||
-    sceneUnmount ||
-    sceneLoading ||
-    document.hidden
-  )
-    return;
-  sceneLoading = true;
-  try {
-    const canvas = document.createElement("canvas");
-    const supported = canvas.getContext("webgl2");
-    if (!supported) return;
-    supported.getExtension("WEBGL_lose_context")?.loseContext();
-    const { mountShopifyScene } = await import("./motion/ShopifyScene.jsx");
-    if (!reduced.matches) sceneUnmount = mountShopifyScene(scene);
-  } catch (error) {
-    console.warn(
-      "3D unavailable; keeping the static storefront illustration.",
-      error,
-    );
-  } finally {
-    sceneLoading = false;
-  }
-}
-if (scene) {
-  const optIn = document.createElement("button");
-  optIn.type = "button";
-  optIn.className = "explore-three";
-  optIn.textContent = "Explore in 3D";
-  optIn.hidden = reduced.matches || matchMedia("(min-width:1001px)").matches;
-  scene.append(optIn);
-  optIn.addEventListener("click", () => {
-    optIn.disabled = true;
-    loadScene().finally(() => {
-      optIn.hidden = !!sceneUnmount;
-      optIn.disabled = false;
-    });
-  });
-  const observer3d = new IntersectionObserver(
-    (entries) => {
-      if (
-        entries[0].isIntersecting &&
-        matchMedia("(min-width:1001px)").matches &&
-        !navigator.connection?.saveData
-      ) {
-        const schedule =
-          window.requestIdleCallback || ((fn) => setTimeout(fn, 400));
-        schedule(loadScene, { timeout: 1800 });
-      }
-    },
-    { rootMargin: "80px" },
-  );
-  observer3d.observe(scene);
-  libraryCleanup.push(() => observer3d.disconnect());
-  reduced.addEventListener("change", () => {
-    optIn.hidden = reduced.matches;
-    if (reduced.matches) {
-      sceneUnmount?.();
-      sceneUnmount = undefined;
-    } else if (matchMedia("(min-width:1001px)").matches) loadScene();
-  });
-}
 let slidersLoading = false;
 const sliderObserver = new IntersectionObserver(
   async (entries) => {
@@ -646,7 +555,7 @@ const bitsObserver = new IntersectionObserver(async entries => {
     ScrollTrigger.refresh();
   } catch (error) { console.warn('Editorial effects unavailable; static content remains.', error); }
 }, { rootMargin: '200px' });
-const bitsSection = document.querySelector('#studio');
+const bitsSection = document.querySelector('.hero-photo-stage');
 if (bitsSection) bitsObserver.observe(bitsSection);
 libraryCleanup.push(() => bitsObserver.disconnect());
 // GSAP owns page exits; component and 3D transforms stay with their own libraries.
@@ -685,7 +594,6 @@ window.addEventListener("pagehide", (event) => {
   observer.disconnect();
   mm.revert();
   disableSmoothScroll();
-  sceneUnmount?.();
   libraryCleanup.forEach((fn) => fn());
   ScrollTrigger.getAll().forEach((t) => t.kill());
 });

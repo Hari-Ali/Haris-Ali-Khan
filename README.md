@@ -32,7 +32,7 @@ The homepage keeps the requested complete sequence: hero → trust → about →
 
 ## Honest placeholders
 
-Client-logo slots, case-story fields, testimonial/video layouts, social profiles, and package terms are visibly labeled placeholders. No competitor client, review, ranking, performance metric, or price is claimed as HUR's. Forme and Assembly remain original design studies, not delivered client projects. Statistics are omitted until verified. Package prices say **Request a Quote**, with project/retainer tabs and a proposed-scope comparison.
+Client-logo slots, case-story fields, testimonial/video layouts, social profiles, and package terms are visibly labeled placeholders. No competitor client, review, ranking, performance metric, or price is claimed as HUR's. Forme and Assembly are stock-photo visual directions, not delivered client projects. Image sources and the distribution license are in `public/images/`. Statistics are omitted until verified. Package prices say **Request a Quote**, with project/retainer tabs and a proposed-scope comparison.
 
 The pasted competitor HTML and full redesign brief guide section order and content density. Both live websites remained blocked by the environment's proxy, and the brief's referenced mobile screenshot was not attached. Existing HUR source copy and verified contact details are retained; current live-site projects and indexed URLs could not be audited.
 
@@ -49,13 +49,12 @@ Each library owns a separate responsibility:
 - **GSAP + ScrollTrigger**: main entrances, page exits/entrances, viewport reveals, timeline progress, desktop process pinning, and storefront storytelling.
 - **SplitType**: accessible word-level hero reveals; the original heading is preserved as its accessible name and splitting is reverted for reduced motion.
 - **Lenis**: desktop wheel smoothing tied to GSAP’s ticker and ScrollTrigger updates. Touch scrolling stays native; reduced motion removes Lenis. Menus and textareas keep native nested scrolling.
-- **Three.js + React Three Fiber + Drei**: a real extruded Shopify bag with modeled handles, separate side materials, SVG-derived logo geometry, a PerspectiveCamera, studio lighting, and ContactShadows. The scene is a lazy React island; semantic page content remains prerendered HTML.
 - **Motion for React**: a scroll-aware return-to-top component with controlled presence/hover/press transitions, loaded only after scrolling.
 - **Swiper**: accessible, non-autoplay portfolio/review sliders with touch gestures, keyboard navigation, pagination, and previous/next controls, loaded near their sections.
 
-Desktop 3D loads on idle when visible. Mobile offers **Explore in 3D** so the initial load remains light. The mobile scene uses DPR 1 and omits contact shadows; desktop DPR is capped at 1.5. Rendering stops offscreen or in hidden tabs. Reduced-motion users and browsers without WebGL retain the static bag/storefront illustration. No external model, texture, or HDR download is needed. The heavy Three.js scene is a separate dynamic chunk, not part of initial page JavaScript.
+React Bits Stack provides the hero's interactive local-photo deck, with click, horizontal drag, keyboard controls, and no autoplay. AnimatedContent owns its GSAP entrance. Reduced motion preserves a static photograph. The rejected 3D bag, generated mockups, and their runtime dependencies have been removed.
 
-Native content, pricing, FAQ, contact, and the requested section order remain intact. GSAP owns page motion, R3F owns the 3D object, Motion owns its button, and Swiper owns slides; effects are not layered over the same transforms. Ordinary touch scrolling is preserved. The mobile menu retains focus containment, Escape dismissal, inert background content, and focus restoration. Tabs support arrow/Home/End keys; FAQ retains native details semantics and reduced-motion fallback. No-JavaScript navigation/email remains available.
+Native content, pricing, FAQ, contact, and the requested section order remain intact. GSAP owns page motion, React Bits owns the photo deck, Motion owns component interactions, and Swiper owns portfolio/review slides; effects are not layered over the same transforms. Ordinary touch scrolling is preserved. The mobile menu retains focus containment, Escape dismissal, inert background content, and focus restoration. Tabs support arrow/Home/End keys; FAQ retains native details semantics and reduced-motion fallback. No-JavaScript navigation/email remains available.
 
 ## SEO
 
@@ -72,10 +71,8 @@ npm test
 `CHROME_PATH` overrides `/usr/bin/chromium`; `TEST_URL` overrides `http://127.0.0.1:4173`. Checks cover 1440, 1024, 768, 390, 375, and 320px layouts; section order; all seven steps/six services; mobile navigation; pricing/stage keyboard controls; FAQ; full email draft; all ten detail pages; metadata; and the no-JavaScript fallback. Lab performance scores do not establish deployed Core Web Vitals or search rankings.
 
 
-The dedicated library test is `npm run test:motion`. It verifies actual WebGL rendering using Chromium’s software renderer, Lenis activation, SplitType markup, both Swipers, Motion’s scroll control, and runtime reduced-motion cleanup. Browser lab measurements depend on rendering support and hardware; production Core Web Vitals must be checked after deployment.
-
-Latest mobile lab audit after the editorial overhaul: **96 performance, 100 accessibility, 100 best practices, 100 SEO**; LCP 1.9s, TBT 150ms, CLS 0.044. This measures the initial mobile experience before opting into 3D; desktop automatically loads the WebGL scene. The separate WebGL test validates the real renderer, while deployed GPU performance and field Core Web Vitals remain to be measured.
+The dedicated library test is `npm run test:motion`. It checks the real React Bits image stack, click/keyboard image changes, removal of rejected artwork, Lenis, SplitType, Swiper, the Motion scroll control, and reduced-motion restoration. Mobile Lighthouse after the photography redesign: **96 performance, 100 accessibility, 100 best practices, 100 SEO**. This measures the real interactive photo deck. Deployed Core Web Vitals remain to be measured.
 
 ### React Bits enhancements
 
-Selected components from [React Bits](https://reactbits.dev/) are vendored in `src/react-bits`: BlurText for the studio manifesto, TiltedCard for pointer-driven portfolio depth, and SpotlightCard for featured service lighting. These are adapted to preserve semantic HTML and the existing GSAP/Swiper responsibilities. Their upstream MIT + Commons Clause license is retained in that directory. No component marketplace or redistribution product is being created. Effects load near the studio section; touch devices skip pointer effects and reduced-motion changes restore the original markup.
+Selected components from [React Bits](https://reactbits.dev/) are vendored in `src/react-bits`: Stack and AnimatedContent for the hero photography, BlurText for the studio manifesto, TiltedCard for pointer-driven portfolio depth, and SpotlightCard for featured service lighting. These are adapted to preserve semantic HTML and the existing GSAP/Swiper responsibilities. Their upstream MIT + Commons Clause license is retained in that directory. No component marketplace or redistribution product is being created. The hero deck loads near the hero viewport; touch devices skip pointer effects and reduced-motion changes restore the original markup.

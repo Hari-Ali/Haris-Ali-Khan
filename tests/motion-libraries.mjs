@@ -14,7 +14,12 @@ page.on("pageerror", (e) => errors.push(e.message));
 const base = process.env.TEST_URL || "http://127.0.0.1:4173";
 try {
   await page.goto(base, { waitUntil: "networkidle" });
-  await page.waitForSelector(".webgl-ready canvas", { timeout: 30000 });
+  await page.waitForSelector(".stack-card[data-top]", { timeout: 30000 });
+  assert.equal(await page.locator('.bag-object,.webgl-bag,.hero-store-window').count(), 0, 'Rejected artwork must be removed');
+  const firstStackImage = await page.locator('.stack-card[data-top] img').getAttribute('src');
+  await page.getByRole('button', {name:'Next image'}).click();
+  await page.waitForTimeout(1300);
+  assert.notEqual(await page.locator('.stack-card[data-top] img').getAttribute('src'), firstStackImage, 'React Bits stack did not change');
   assert.ok(
     (await page.locator(".hero-word").count()) > 0,
     "SplitType words missing",
@@ -23,17 +28,14 @@ try {
     await page.locator("html").evaluate((e) => e.classList.contains("lenis")),
     "Lenis not active",
   );
-  assert.equal(
-    await page.locator(".webgl-ready canvas").count(),
-    1,
-    "R3F canvas missing",
-  );
-  await page.waitForTimeout(1000);
-  await page.screenshot({ path: "/tmp/hur-webgl-desktop.png" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload({ waitUntil: "networkidle" });
-  await page.getByRole("button", { name: "Explore in 3D" }).click();
-  await page.waitForSelector(".webgl-ready canvas");
+  await page.waitForSelector('.stack-card[data-top]');
+  await page.locator('.stack').focus();
+  const initialImage = await page.locator('.stack-card[data-top] img').getAttribute('src');
+  await page.keyboard.press('ArrowRight');
+  await page.waitForTimeout(1300);
+  assert.notEqual(await page.locator('.stack-card[data-top] img').getAttribute('src'), initialImage);
   await page.locator(".portfolio-swiper").scrollIntoViewIfNeeded();
   await page.waitForSelector(".portfolio-swiper.swiper-initialized");
   await page.waitForTimeout(500);
@@ -90,9 +92,9 @@ try {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.waitForTimeout(300);
   assert.equal(
-    await page.locator(".webgl-bag").count(),
+    await page.locator(".stack-card").count(),
     0,
-    "Reduced motion must remove 3D",
+    "Reduced motion must restore static image",
   );
   assert.equal(
     await page.locator("html").evaluate((e) => e.classList.contains("lenis")),
@@ -106,7 +108,7 @@ try {
   );
   assert.deepEqual(errors, []);
   console.log(
-    "R3F/Three/Drei, Lenis, SplitType, both Swipers, Motion control, and reduced-motion cleanup passed",
+    "React Bits image stack, keyboard controls, Lenis, SplitType, both Swipers, Motion control, and reduced-motion cleanup passed",
   );
 } finally {
   await browser.close();

@@ -239,3 +239,40 @@ caption { font-size:11px; }
 .rb-tilted-layer .concept-nav,.rb-tilted-layer .forme-copy,.rb-tilted-layer .assembly-copy { transform:translateZ(12px); }
 @media(prefers-reduced-motion:reduce) { .rb-tilted-layer { transform:none!important; } }
 .about-manifesto h2>.rb-blur-heading { color:var(--paper); }
+/* Photography replaces the former generated objects and storefront illustrations. */
+.hero-photo-stage { grid-column:2; grid-row:1; padding:30px 30px 30px 65px; min-width:0; }
+.photo-stage-label,.photo-stage-footer { display:flex; justify-content:space-between; align-items:center; gap:15px; font-family:'IBM Plex Mono',monospace; font-size:10px; line-height:1.6; color:#b8c0c6; }
+.hero-image-stack { height:345px; position:relative; margin:48px 0 24px; }
+.stack-fallback,.stack-mount,.stack-entrance { width:100%; height:100%; }
+.stack-fallback { display:block; object-fit:cover; }
+.stack-next { display:flex; align-items:center; gap:12px; background:none; border:0; color:var(--paper); font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer; padding:12px 0; min-height:44px; white-space:nowrap; }
+.stack-next[hidden] { display:none; }
+.hero-layout { min-height:450px; }
+.service-photo { margin:20px 0 25px; }
+.service-photo>img { display:block; width:100%; height:240px; object-fit:cover; }
+.service-photo>span { display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; margin-top:12px; color:inherit; }
+.service-panel:nth-child(n+3) { padding-block:20px; }
+.service-panel:nth-child(6) { display:flex; grid-column:span 4; padding:20px 0; }
+.service-panel:nth-child(6) .service-content { padding-top:0; }
+.photo-storefront { padding:0; position:relative; background:#101213; color:#fff; height:360px; overflow:hidden; }
+.photo-storefront>img { width:100%; height:100%; display:block; object-fit:cover; opacity:.8; }
+.photo-storefront .store-nav { position:absolute; top:22px; left:24px; right:24px; z-index:2; }
+.photo-storefront h3 { position:absolute; left:24px; bottom:54px; margin:0; color:white; text-shadow:0 2px 18px #0009; }
+.photo-storefront .store-caption { position:absolute; left:24px; bottom:24px; color:white; }
+.responsive-photo-layout { display:grid; grid-template-columns:1fr 1fr; height:100%; background:#e9e7df; color:#25313a; }
+.responsive-photo-layout>img { width:100%; height:100%; object-fit:cover; }
+.responsive-photo-layout>div { padding:30px 20px; }
+.responsive-photo-layout span { font-family:'IBM Plex Mono',monospace; font-size:9px; }
+.responsive-photo-layout h3 { font-size:30px; margin:30px 0; }
+.responsive-photo-layout p { font-size:17px; }
+.photo-project { position:relative; overflow:hidden; background:#14191d; }
+.photo-project>img,.rb-tilted-layer>img { width:100%; height:100%; display:block; object-fit:cover; }
+.photo-project-overlay { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:end; padding:36px; background:linear-gradient(transparent 30%,#000b); color:#fff; }
+.photo-project-overlay>span,.photo-project-overlay>small { font-family:'IBM Plex Mono',monospace; font-size:10px; }
+.photo-project-overlay h3 { font-size:44px; line-height:1.1; letter-spacing:-.05em; margin:20px 0 24px; }
+.case-stock-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.case-art>.eyebrow,.case-art-note { position:absolute; z-index:2; background:#e9e7dfe8; color:#24312a; padding:9px 12px; font-size:10px; }
+.case-art>.eyebrow { top:22px; left:22px; }.case-art-note { bottom:22px; left:22px; }
+@media(max-width:1100px) { .hero-photo-stage { padding-left:45px; padding-right:10px; }.hero-image-stack { height:300px; }.photo-project-overlay h3 { font-size:36px; } }
+@media(max-width:760px) { .hero-photo-stage { grid-column:1; grid-row:2; padding:0 10px 0 22px; margin-top:30px; }.hero-image-stack { height:270px; margin-top:35px; }.photo-stage-label,.photo-stage-footer { font-size:9px; }.photo-stage-footer>span { max-width:180px; }.stack-next { font-size:12px; }.hero-layout { min-height:0; }.service-panel:nth-child(6) { grid-column:auto; }.photo-project-overlay { padding:26px; }.photo-project-overlay h3 { font-size:34px; }.photo-storefront { height:320px; }.photo-storefront .store-nav span { font-size:8px; }.responsive-photo-layout h3 { font-size:23px; }.responsive-photo-layout>div { padding:25px 14px; } }
+.hero-photo-stage { overflow:clip; }

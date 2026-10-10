@@ -8,3 +8,5 @@ Components used in this HUR Solution website:
 - src/content/Components/SpotlightCard/SpotlightCard.jsx: decorative layers portaled into existing service articles, retaining upstream lighting behavior.
 
 Integration controls lazy loading, touch capability, reduced-motion changes, and cleanup. GSAP retains scroll and page transitions; Motion owns these component interactions.
+- src/content/Components/Stack/Stack.jsx and Stack.css: interactive photography deck, using supplied local stock photos; React import and a descriptive keyboard label added. Autoplay disabled, tilt capped to 4 degrees.
+- src/content/Animations/AnimatedContent/AnimatedContent.jsx: GSAP entry for the photo deck; React import added.
