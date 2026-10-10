@@ -635,6 +635,20 @@ const loadControl = async () => {
 window.addEventListener("scroll", loadControl, { passive: true });
 libraryCleanup.push(() => window.removeEventListener("scroll", loadControl));
 loadControl();
+// Load selected React Bits components only when their section approaches the viewport.
+let bitsLoading = false;
+const bitsObserver = new IntersectionObserver(async entries => {
+  if (!entries.some(entry => entry.isIntersecting) || bitsLoading) return;
+  bitsLoading = true; bitsObserver.disconnect();
+  try {
+    const { mountReactBits } = await import('./react-bits/mount.jsx');
+    libraryCleanup.push(mountReactBits());
+    ScrollTrigger.refresh();
+  } catch (error) { console.warn('Editorial effects unavailable; static content remains.', error); }
+}, { rootMargin: '200px' });
+const bitsSection = document.querySelector('#studio');
+if (bitsSection) bitsObserver.observe(bitsSection);
+libraryCleanup.push(() => bitsObserver.disconnect());
 // GSAP owns page exits; component and 3D transforms stay with their own libraries.
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a[href]");

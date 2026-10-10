@@ -75,3 +75,7 @@ npm test
 The dedicated library test is `npm run test:motion`. It verifies actual WebGL rendering using Chromium’s software renderer, Lenis activation, SplitType markup, both Swipers, Motion’s scroll control, and runtime reduced-motion cleanup. Browser lab measurements depend on rendering support and hardware; production Core Web Vitals must be checked after deployment.
 
 Latest mobile lab audit after the editorial overhaul: **96 performance, 100 accessibility, 100 best practices, 100 SEO**; LCP 1.9s, TBT 150ms, CLS 0.044. This measures the initial mobile experience before opting into 3D; desktop automatically loads the WebGL scene. The separate WebGL test validates the real renderer, while deployed GPU performance and field Core Web Vitals remain to be measured.
+
+### React Bits enhancements
+
+Selected components from [React Bits](https://reactbits.dev/) are vendored in `src/react-bits`: BlurText for the studio manifesto, TiltedCard for pointer-driven portfolio depth, and SpotlightCard for featured service lighting. These are adapted to preserve semantic HTML and the existing GSAP/Swiper responsibilities. Their upstream MIT + Commons Clause license is retained in that directory. No component marketplace or redistribution product is being created. Effects load near the studio section; touch devices skip pointer effects and reduced-motion changes restore the original markup.

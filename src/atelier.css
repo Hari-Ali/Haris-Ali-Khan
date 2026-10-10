@@ -222,3 +222,20 @@ caption { font-size:11px; }
 #brief-form input::placeholder,#brief-form textarea::placeholder { color:#435967; opacity:1; }
 .oversized-wordmark { font-family:Manrope,sans-serif; color:#606a71; padding:32px 0 20px; }
 @media(max-width:760px) { #brief-form input,#brief-form select,#brief-form textarea { font-size:16px; } }
+/* React Bits: restrained, progressively enhanced editorial motion. */
+.rb-controller { display:none; }
+.rb-blur-heading { display:block; }
+.rb-blur-line { margin:0; font:inherit; line-height:inherit; letter-spacing:inherit; }
+.rb-blur-heading .rb-muted { color:#9ba3a8; }
+.rb-blur-line>span { display:inline-block; }
+.rb-spotlight { position:relative; isolation:isolate; }
+.rb-spotlight>.service-content,.rb-spotlight>.service-art,.rb-spotlight>.service-panel-top { position:relative; z-index:2; }
+.spotlight-card__light,.spotlight-card__grain,.spotlight-card__border,.spotlight-card__edge { position:absolute; inset:0; pointer-events:none; }
+.spotlight-card__light,.spotlight-card__grain { z-index:1; opacity:0; }
+.spotlight-card__grain { display:none; }
+.spotlight-card__border,.spotlight-card__edge { z-index:3; padding:1px; mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0); opacity:0; }
+.rb-tilted { perspective:1400px; }
+.rb-tilted-layer { position:relative; width:100%; height:100%; transform-style:preserve-3d; transform-origin:center; }
+.rb-tilted-layer .concept-nav,.rb-tilted-layer .forme-copy,.rb-tilted-layer .assembly-copy { transform:translateZ(12px); }
+@media(prefers-reduced-motion:reduce) { .rb-tilted-layer { transform:none!important; } }
+.about-manifesto h2>.rb-blur-heading { color:var(--paper); }
