@@ -1,8 +1,8 @@
-# HUR Solution — independent design & development studio
+# HUR Solution — premium Shopify & digital studio
 
-An editorial agency website for Haris Ali Khan. Built with Vite, HTML/CSS/JavaScript, and GSAP. Charcoal and off-white with restrained blue accents; Satoshi headings and Inter UI/body text are served locally.
+A complete multi-page editorial redesign for Haris Ali Khan. Built with Vite, semantic HTML, CSS, JavaScript, GSAP/ScrollTrigger, and locally served Satoshi, Inter, and IBM Plex Mono. The palette is charcoal/off-white with restrained #ED176A accents and a light case-study section.
 
-## Development
+## Run and deploy
 
 Node.js 22.12+ is required; this environment uses Node.js 24.
 
@@ -13,35 +13,52 @@ npm run build
 npm run preview -- --port 4173
 ```
 
-Deploy the generated `dist/` directory to a static host. No backend secrets are required.
+Build outputs the homepage, six service pages, three original journal guides, and a noindex case-study framework into `dist/`. Deploy that directory to a static host with directory-index support. `predev` and `prebuild` regenerate pages automatically. No backend credentials are required for the email-draft fallback.
 
-## Motion
+## Structure and editing
 
-GSAP handles masked headline entrances, ScrollTrigger reveals, subtle project parallax, anchor scrolling using ScrollToPlugin, magnetic CTAs, service hover responses, and gently floating Shopify bag artwork. Ordinary wheel/touch scrolling stays native. The bag uses CSS 3D surfaces and an inline vector mark, with no WebGL/model download. Continuous motion pauses offscreen and in hidden tabs. Reduced-motion preferences disable animations and preserve native navigation. Fine-pointer effects are disabled on touch devices.
+The homepage keeps the requested complete sequence: hero → trust → about → seven-step process → six services → work → cases → reviews → FAQ → pricing → journal → contact → footer.
 
-## Content & enquiries
+- `src/home.html`: editable homepage template; preserves the existing HUR hero, profile, design studies, FAQ, and enquiry flow.
+- `scripts/site-content.mjs`: service copy, ordered process steps, FAQ answers, and original article content.
+- `scripts/templates.mjs`: shared metadata, navigation, header, footer, and icon helper.
+- `scripts/generate-pages.mjs`: composes the homepage and generates crawlable detail pages and sitemap.
+- `src/style.css`: typography, grid, layout, materials, responsive breakpoints, and motion fallbacks.
+- `src/main.js`: menus, tabs, accessible controls, GSAP effects, and enquiry preparation.
+- `src/site-config.js`: verified contact email; booking URL and form endpoint remain unconfigured.
 
-Enquiries include optional name/store URL plus service, budget, timeline, and project details. They prepare an email draft addressed to `alikhanharis515@gmail.com`; they are not sent or stored. A copy fallback is available. A hosted endpoint is required for direct browser submissions.
+`index.html`, `services/*/index.html`, `journal/*/index.html`, and the case-study framework are generated files. Make content edits in the template/data modules and run `npm run generate` instead of editing outputs directly.
 
-Forme and Assembly are expressly identified as design studies, not completed client projects. Confirm service descriptions and replace concepts with verified project information before launch. The website is not affiliated with Shopify.
+## Honest placeholders
 
-The competitor’s pasted HTML was reviewed as a content reference for Shopify services, process, FAQs, and enquiry structure. HUR Solution uses original wording; competitor rankings, testimonials, client names, metrics, payment terms, and prices are excluded. The existing live site remains blocked by environment network policy; its content and indexed URLs have not been audited. Before replacing the live site, inventory its URLs, map redirects, review canonical/metadata, and connect Search Console.
+Client-logo slots, case-story fields, testimonial/video layouts, social profiles, and package terms are visibly labeled placeholders. No competitor client, review, ranking, performance metric, or price is claimed as HUR's. Forme and Assembly remain original design studies, not delivered client projects. Statistics are omitted until verified. Package prices say **Request a Quote**, with project/retainer tabs and a proposed-scope comparison.
 
-## Fonts & SEO
+The pasted competitor HTML and full redesign brief guide section order and content density. Both live websites remained blocked by the environment's proxy, and the brief's referenced mobile screenshot was not attached. Existing HUR source copy and verified contact details are retained; current live-site projects and indexed URLs could not be audited.
 
-Satoshi is designed by Deni Anggara / Indian Type Foundry. See `public/fonts/NOTICE.txt` for attribution and source. Inter is included through @fontsource, with its license retained in that package.
+The six requested service categories are included. Final technical feasibility, checkout-plan limitations, payment terms, delivery, and support are confirmed in the project scope. Before replacing the live site, review final business content, inventory existing URLs, map redirects, and connect Search Console.
 
-SEO includes semantic HTML, a canonical URL for https://hursolution.com/, Organization JSON-LD, page/social metadata, a social preview PNG, favicon, robots.txt, and sitemap.xml. These are foundations; search rankings are not guaranteed.
+## Contact and booking
 
-## Validation
+Book a Call links into contact until a booking URL is provided. The form includes name, reply email, website, service, budget, timeline, project details, and the selected pricing framework. It prepares a mailto draft to `alikhanharis515@gmail.com`; it does not send, store, or transmit enquiries automatically. A copy fallback is available. Direct web submissions need a verified backend endpoint and implementation. Social icons have no unverified destination links.
 
-Production build passed. Chromium functional checks at 1440px, 768px, 390px, and 320px verified local fonts, no horizontal overflow, GSAP anchor navigation, accordion behavior, and correctly encoded email enquiries. Reduced-motion checks verified a static bag and usable native navigation. No JavaScript errors were observed.
+## Motion and accessibility
 
-A local mobile Lighthouse audit scored 100 for performance, accessibility, best practices, and SEO, with LCP 1.5s, TBT 20ms, and CLS 0.013. These are lab results, not deployed Core Web Vitals.
+The Shopify bag uses genuine CSS 3D surfaces, a vector mark, studio shading, and GSAP motion; no WebGL/model download is needed. The storefront overlay is an original design study. GSAP provides restrained masked entrances, viewport reveals, timeline progress, sequential storefront/code/responsive/check stages, anchor scrolling, and desktop-only pointer effects. Native wheel/touch scrolling is preserved. Continuous decorative motion pauses offscreen and in hidden tabs.
 
-## Editing
+Reduced-motion users get static visuals and native navigation. Mobile menu uses focus containment, Escape dismissal, inert background content, and focus restoration. Pricing/stage tabs support arrow/Home/End keys and ARIA relationships. FAQ starts with native details semantics and adds reversible height animation. A no-JavaScript navigation/email fallback is available.
 
-- `index.html`: content, semantic structure, inline bag mark, contact settings, metadata.
-- `src/style.css`: typography, layouts, CSS 3D bag, responsive states.
-- `src/main.js`: GSAP effects, reduced-motion handling, enquiry preparation.
-- `public/`: local Satoshi font, previews, favicon, sitemap, robots.txt.
+## SEO
+
+Each service and guide has its own title, description, canonical, Open Graph metadata, and descriptive URL. Organization metadata is used on the homepage; Article metadata is used for guides. Sitemap includes ten real content URLs and excludes the noindex placeholder case study. No review, rating, or ineligible FAQ rich-result claims are generated. Satoshi attribution/source is in `public/fonts/NOTICE.txt`; Inter and IBM Plex Mono licenses are retained in their packages. The site is not affiliated with Shopify.
+
+## Browser tests
+
+With Chromium installed and production preview running:
+
+```sh
+npm test
+```
+
+`CHROME_PATH` overrides `/usr/bin/chromium`; `TEST_URL` overrides `http://127.0.0.1:4173`. Checks cover 1440, 1024, 768, 390, 375, and 320px layouts; section order; all seven steps/six services; mobile navigation; pricing/stage keyboard controls; FAQ; full email draft; all ten detail pages; metadata; and the no-JavaScript fallback. Lab performance scores do not establish deployed Core Web Vitals or search rankings.
+
+Latest local mobile Lighthouse audit: **98 performance, 100 accessibility, 100 best practices, 100 SEO**; LCP 1.9s, TBT 100ms, CLS 0.001. The animated mobile-menu focus trap, Escape dismissal, and focus restoration were also checked. These are local lab observations, not production field measurements.
