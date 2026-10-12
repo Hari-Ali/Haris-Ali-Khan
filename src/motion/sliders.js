@@ -2,6 +2,7 @@ import Swiper from "swiper";
 import { A11y, Navigation, Pagination, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { iconMarkup } from "../icons";
 export function mountSliders(reduced) {
   const instances = [];
   function setup(selector, label, breakpoints) {
@@ -11,7 +12,7 @@ export function mountSliders(reduced) {
     if (!wrapper) return;
     const controls = document.createElement("div");
     controls.className = "showcase-controls";
-    controls.innerHTML = `<button type="button" class="showcase-prev" aria-label="Previous ${label}">←</button><div class="showcase-pagination"></div><button type="button" class="showcase-next" aria-label="Next ${label}">→</button>`;
+    controls.innerHTML = `<button type="button" class="showcase-prev" aria-label="Previous ${label}" title="Previous ${label}">${iconMarkup("arrowLeft")}</button><div class="showcase-pagination"></div><button type="button" class="showcase-next" aria-label="Next ${label}" title="Next ${label}">${iconMarkup("arrowRight")}</button>`;
     track.after(controls);
     const swiper = new Swiper(track, {
       modules: [A11y, Navigation, Pagination, Keyboard],

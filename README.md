@@ -1,6 +1,6 @@
 # HUR Solution — premium Shopify & digital studio
 
-A complete multi-page editorial redesign for Haris Ali Khan. Built with Vite, semantic HTML, CSS, JavaScript, GSAP/ScrollTrigger, and locally served Manrope ExtraBold, DM Sans, and IBM Plex Mono. The visual system uses ink charcoal, mineral blue, off-white, and contrasting paper sections.
+A complete multi-page website for Haris Ali Khan. Built with Vite, semantic HTML, CSS, JavaScript, GSAP/ScrollTrigger, and locally served Outfit. The visual system applies the reviewed Moeed Irfan direction with black surfaces, white and accessible secondary text, and pink actions while retaining HUR Solution's content and identity.
 
 ## Run and deploy
 
@@ -24,7 +24,8 @@ The homepage keeps the requested complete sequence: hero → about → seven-ste
 - `scripts/templates.mjs`: shared metadata, navigation, header, footer, and icon helper.
 - `scripts/generate-pages.mjs`: composes the homepage and generates crawlable detail pages and sitemap.
 - `src/style.css`: baseline components, accessibility, library islands, and motion fallbacks.
-- `src/atelier.css`: the complete editorial art direction, typography, asymmetric service compositions, and responsive layouts.
+- `src/atelier.css`: the shared token-based component styling, full-width photo hero, and responsive layouts.
+- `src/design-tokens.css`: supplied primitives, accessible semantic mappings, and named layout/heading extensions.
 - `src/main.js`: menus, tabs, accessible controls, GSAP effects, and enquiry preparation.
 - `src/site-config.js`: verified contact email; booking URL and form endpoint remain unconfigured.
 
@@ -66,6 +67,8 @@ With Chromium installed and production preview running:
 
 ```sh
 npm test
+npm run test:motion
+npm run test:design
 ```
 
 `CHROME_PATH` overrides `/usr/bin/chromium`; `TEST_URL` overrides `http://127.0.0.1:4173`. Checks cover 1440, 1024, 768, 390, 375, and 320px layouts; section order; all seven steps/six services; mobile navigation; pricing/stage keyboard controls; FAQ; full email draft; all ten detail pages; metadata; and the no-JavaScript fallback. Lab performance scores do not establish deployed Core Web Vitals or search rankings.

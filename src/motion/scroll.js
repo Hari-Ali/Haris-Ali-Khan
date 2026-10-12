@@ -23,7 +23,12 @@ export function disableSmoothScroll() {
   lenis = undefined;
   tick = undefined;
 }
-export function scrollTo(target, { offset = -100, onComplete } = {}) {
+function headerOffset() {
+  const headerHeight = document.querySelector(".site-header")?.getBoundingClientRect().height || 0;
+  const gap = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gap-stack")) || 0;
+  return -headerHeight - gap;
+}
+export function scrollTo(target, { offset = headerOffset(), onComplete } = {}) {
   if (lenis) {
     lenis.scrollTo(target, { offset, duration: 0.9, onComplete });
     return;

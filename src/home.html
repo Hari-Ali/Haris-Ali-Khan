@@ -1,12 +1,18 @@
 {{HEAD}}{{HEADER}}
 <main id="main">
-  <section class="hero wrap">
-    <div class="hero-top">
+  <section class="hero">
+    <div class="hero-photo-stage">
+      <div id="hero-image-stack" class="hero-image-stack">
+        <img src="/images/timepieces.jpg" alt="Close-up stock photograph of a black wristwatch" width="600" height="450" fetchpriority="high" class="stack-fallback" />
+      </div>
+      <div class="photo-stage-footer wrap"><span>STOCK PHOTOGRAPHY / VISUAL DIRECTION</span><button type="button" class="stack-next" aria-label="Next image" title="Next image" hidden>{{ARROW_RIGHT}}</button></div>
+    </div>
+    <div class="hero-top wrap">
       <span class="eyebrow">INDEPENDENT SHOPIFY & DIGITAL STUDIO</span
       ><span class="edition">HARIS ALI KHAN / HUR SOLUTION</span>
     </div>
-    <div class="hero-layout">
-      <div class="hero-copy"><h1><span class="line">Shopify stores.</span><span class="line"><span class="hero-accent">Built around you.</span></span></h1>
+    <div class="hero-layout wrap">
+      <div class="hero-copy"><p class="hero-brand">HUR Solution</p><h1><span class="line">Shopify stores.</span><span class="line"><span class="hero-accent">Built around you.</span></span></h1>
         <div class="hero-description"><p>Design, development, and ongoing care for brands that want a better Shopify experience.</p></div>
         <div class="hero-actions">
           <a href="#contact" class="button primary magnetic"
@@ -24,13 +30,6 @@
             >See the work <span>↓</span></a
           >
         </div>
-      </div>
-      <div class="hero-photo-stage">
-        <div class="photo-stage-label"><span>COMMERCE / IN FOCUS</span><span>01 — 03</span></div>
-        <div id="hero-image-stack" class="hero-image-stack">
-          <img src="/images/timepieces.jpg" alt="Close-up stock photograph of a black wristwatch" width="600" height="450" fetchpriority="high" class="stack-fallback" />
-        </div>
-        <div class="photo-stage-footer"><span>STOCK PHOTOGRAPHY / VISUAL DIRECTION</span><button type="button" class="stack-next" hidden>Next image {{ARROW}}</button></div>
       </div>
     </div>
   </section>
@@ -585,6 +584,7 @@
             rows="3"
             maxlength="2000"
             required
+            aria-describedby="project-brief-hint"
             placeholder="What needs to change, and what should the result feel like?"
           ></textarea
           ><button class="button dark" type="submit">
@@ -601,7 +601,7 @@
                 <path d="M5 19 19 5M5 5h14v14" /></svg
             ></span>
           </button>
-          <p class="form-note">
+          <p class="form-note" id="project-brief-hint">
             Your details stay in this browser until you choose to send an email.
             Preparing the draft doesn’t send your enquiry.
           </p>

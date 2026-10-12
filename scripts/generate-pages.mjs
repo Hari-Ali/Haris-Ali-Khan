@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { services, steps, faqs, articles } from "./site-content.mjs";
-import { arrow, escape, head, header, footer, end } from "./templates.mjs";
+import { arrow, arrowRight, escape, head, header, footer, end } from "./templates.mjs";
 const icon = (i) =>
   `<svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">${['<rect x="7" y="8" width="26" height="24" rx="1"/><path d="M7 15h26M15 15v17"/>', '<path d="m14 10-10 10 10 10m12-20 10 10-10 10m-3-24-6 28"/>', '<circle cx="20" cy="20" r="14"/><path d="m20 20 9-9M9 20h3m8 8v3"/>', '<path d="M5 7h4l4 20h18l4-14H10M17 32h1m11 0h1"/>', '<rect x="3" y="7" width="12" height="26" rx="2"/><rect x="25" y="7" width="12" height="26" rx="2"/><path d="M15 17h10m-10 7h10"/>', '<path d="M8 22v-4a12 12 0 0 1 24 0v4M8 17H4v12h7V17H8m24 0h4v12h-7V17h3m0 12c0 5-6 5-9 5"/>'][i]}</svg>`;
 const serviceArt = () => '';
@@ -41,6 +41,7 @@ const parts = {
   FOOTER: footer(),
   END: end,
   ARROW: arrow,
+  ARROW_RIGHT: arrowRight,
   PROCESS: steps
     .map(
       ([title, description], i) =>

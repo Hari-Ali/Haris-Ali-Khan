@@ -18,7 +18,7 @@ export function mountReactBits() {
       const next=document.querySelector('.stack-next');
       const nextImage=()=>mountHost.querySelector('.stack')?.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));
       const cards=[['timepieces','Close-up stock photograph of a black wristwatch'],['workspace','Stock photograph of a laptop'],['footwear','Stock photograph of athletic footwear']].map(([name,alt])=><img key={name} src={`/images/${name}.jpg`} alt={alt} width="600" height="450" draggable={false}/>);
-      root.render(<AnimatedContent distance={20} duration={0.9} threshold={0.05} className="stack-entrance"><Stack cards={cards} layout="cascade" visible={3} spread={0.5} depth={0.4} radius={3} tilt={fine.matches?4:0} speed={0.8} sendToBackOnClick autoplay={false}/></AnimatedContent>);
+      root.render(<AnimatedContent distance={0} duration={0.3} threshold={0.05} className="stack-entrance"><Stack cards={cards} layout="deck" visible={1} spread={0} depth={0} radius={0} shadow={false} tilt={0} speed={0.8} sendToBackOnClick autoplay={false}/></AnimatedContent>);
       next.hidden=false; next.addEventListener('click',nextImage);
       cleanups.push(()=>{next.hidden=true;next.removeEventListener('click',nextImage);root.unmount();stackHost.replaceChildren(...original);});
     }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { ArrowUp } from "lucide";
 function ScrollControl() {
   const [visible, setVisible] = useState(false);
   const reduced = useReducedMotion();
@@ -16,6 +17,7 @@ function ScrollControl() {
         <motion.button
           className="floating-scroll-control"
           aria-label="Return to page top"
+          title="Return to page top"
           initial={{ opacity: 0, y: reduced ? 0 : 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: reduced ? 0 : 8 }}
@@ -33,7 +35,7 @@ function ScrollControl() {
             strokeWidth="1.5"
             aria-hidden="true"
           >
-            <path d="m6 10 6-6 6 6M12 4v16" />
+            {ArrowUp.map(([tag, attributes], key) => React.createElement(tag, { ...attributes, key }))}
           </svg>
         </motion.button>
       )}

@@ -1,7 +1,7 @@
-import "@fontsource/manrope/latin-800.css";
-import "@fontsource/dm-sans/latin-400.css";
-import "@fontsource/dm-sans/latin-500.css";
-import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/outfit/latin-400.css";
+import "@fontsource/outfit/latin-500.css";
+import "@fontsource/outfit/latin-600.css";
+import { iconMarkup } from "./icons";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
@@ -20,6 +20,11 @@ const mm = gsap.matchMedia();
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 const header = document.querySelector(".site-header");
+if (header) {
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty("--size-header-current", `${header.getBoundingClientRect().height}px`);
+  }).observe(header);
+}
 ScrollTrigger.create({
   start: 40,
   end: "max",
@@ -35,7 +40,7 @@ const footer = document.querySelector(".footer-shell");
 const menuClose = document.createElement("button");
 menuClose.className = "menu-close";
 menuClose.type = "button";
-menuClose.textContent = "Close navigation ×";
+menuClose.innerHTML = `Close navigation ${iconMarkup("close")}`;
 menu?.prepend(menuClose);
 if (menu) {
   menu.setAttribute("data-lenis-prevent", "");
@@ -468,6 +473,30 @@ document.querySelectorAll("[data-enquiry-plan]").forEach((link) =>
   }),
 );
 if (form) {
+  const fields = [...form.querySelectorAll("input, select, textarea:not([readonly])")];
+  fields.forEach((field) => {
+    const error = document.createElement("p");
+    error.id = `${field.id}-error`;
+    error.className = "field-error";
+    error.hidden = true;
+    field.after(error);
+    const originalDescription = field.getAttribute("aria-describedby") || "";
+    field.addEventListener("invalid", () => {
+      error.textContent = field.validationMessage;
+      error.hidden = false;
+      field.setAttribute("aria-invalid", "true");
+      field.setAttribute("aria-describedby", `${originalDescription} ${error.id}`.trim());
+    });
+    field.addEventListener("input", () => {
+      if (field.id === "project-brief") field.setCustomValidity("");
+      if (field.validity.valid) {
+        error.hidden = true;
+        field.removeAttribute("aria-invalid");
+        if (originalDescription) field.setAttribute("aria-describedby", originalDescription);
+        else field.removeAttribute("aria-describedby");
+      }
+    });
+  });
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const brief = document.querySelector("#project-brief").value.trim();
@@ -489,10 +518,12 @@ if (form) {
     document.querySelector("#prepared-brief").focus();
     ScrollTrigger.refresh();
   });
-  document
-    .querySelector("#project-brief")
-    .addEventListener("input", (event) => event.target.setCustomValidity(""));
   document.querySelector("#copy-brief").addEventListener("click", async () => {
+    const copyButton = document.querySelector("#copy-brief");
+    if (copyButton.getAttribute("aria-busy") === "true") return;
+    copyButton.setAttribute("aria-busy", "true");
+    copyButton.setAttribute("aria-disabled", "true");
+    document.querySelector("#copy-status").textContent = "Copying brief...";
     const text = document.querySelector("#prepared-brief");
     try {
       await navigator.clipboard.writeText(text.value);
@@ -503,6 +534,9 @@ if (form) {
       text.select();
       document.querySelector("#copy-status").textContent =
         "Select and copy the brief manually.";
+    } finally {
+      copyButton.removeAttribute("aria-busy");
+      copyButton.removeAttribute("aria-disabled");
     }
   });
 }
