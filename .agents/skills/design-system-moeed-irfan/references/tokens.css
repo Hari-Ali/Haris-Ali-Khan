@@ -1,0 +1,125 @@
+/* Supplied primitives are preserved; components consume the semantic layer. */
+:root {
+  --font-family-primary: Outfit;
+  --font-family-stack: Outfit, sans-serif;
+  --font-size-base: 16px;
+  --font-weight-base: 400;
+  --font-line-height-base: 25.6px;
+  --font-size-xs: 11.52px;
+  --font-size-sm: 12.48px;
+  --font-size-md: 12.8px;
+  --font-size-lg: 13.12px;
+  --font-size-xl: 13.33px;
+  --font-size-2xl: 13.6px;
+  --font-size-3xl: 13.76px;
+  --font-size-4xl: 14px;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a1a1aa;
+  --color-text-tertiary: #71717a;
+  --color-text-inverse: #ec006e;
+  --color-surface-base: #000000;
+  --color-surface-muted: #111113;
+  --color-surface-raised: #0a0a0b;
+  --color-surface-strong: #d90065;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 9px;
+  --space-6: 10px;
+  --space-7: 11px;
+  --space-8: 12px;
+  --radius-xs: 10px;
+  --radius-sm: 12px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 20px;
+  --radius-2xl: 50px;
+  --radius-step7: 100px;
+  --shadow-1: rgba(0, 0, 0, 0.5) 0px 12px 36px 0px;
+  --shadow-2: rgba(37, 211, 102, 0.4) 0px 4px 20px 0px;
+  --shadow-3: rgba(236, 0, 110, 0.4) 0px 4px 15px 0px;
+  --shadow-4: rgba(236, 0, 110, 0.15) 0px 0px 0px 6px,
+    rgba(236, 0, 110, 0.4) 0px 10px 28px -8px;
+  --motion-duration-instant: 200ms;
+  --motion-duration-fast: 300ms;
+  --motion-duration-normal: 350ms;
+  --motion-duration-slow: 400ms;
+  --motion-duration-slower: 450ms;
+  --motion-duration-step6: 500ms;
+  --motion-duration-step7: 800ms;
+
+  /* Shared extensions fill layout, headings, and responsive sizing gaps. */
+  --size-heading-small: 24px;
+  --size-heading-medium: 32px;
+  --size-heading-large: 48px;
+  --weight-emphasis: 600;
+  --line-height-body: 1.6;
+  --line-height-heading: 1.2;
+  --line-height-control: 1.5;
+  --letter-spacing-default: 0;
+  --layout-content-max: 72rem;
+  --layout-reading-max: 65ch;
+  --layout-card-min: 18rem;
+  --layout-media-ratio: 16 / 9;
+  --size-target-aa: 24px;
+  --size-target-touch: 44px;
+  --border-width-default: 1px;
+  --focus-width: 2px;
+  --motion-duration-none: 0ms;
+  --motion-easing-standard: ease-out;
+
+  --surface-page: var(--color-surface-base);
+  --surface-panel: var(--color-surface-raised);
+  --surface-hover: var(--color-surface-muted);
+  --surface-action: var(--color-surface-strong);
+  --text-body: var(--color-text-primary);
+  --text-muted: var(--color-text-secondary);
+  --text-on-action: var(--color-text-primary);
+  --text-link: var(--color-text-primary);
+  --text-link-hover: var(--color-text-secondary);
+  --text-accent-on-page: var(--color-text-inverse);
+  --text-error: var(--color-text-primary);
+  --border-control: var(--color-text-secondary);
+  --border-error: var(--color-text-primary);
+  --focus-ring: var(--color-text-primary);
+  --focus-offset-color: var(--color-surface-base);
+  --focus-offset: var(--space-2);
+  --font-body-family: var(--font-family-stack);
+  --font-body-size: var(--font-size-base);
+  --font-body-weight: var(--font-weight-base);
+  --font-body-leading: var(--line-height-body);
+  --font-label-size: var(--font-size-base);
+  --font-label-weight: var(--weight-emphasis);
+  --font-label-leading: var(--line-height-control);
+  --font-meta-size: var(--font-size-4xl);
+  --font-meta-leading: var(--line-height-body);
+  --font-heading-small: var(--size-heading-small);
+  --font-heading-medium: var(--size-heading-medium);
+  --font-heading-large: var(--size-heading-large);
+  --font-heading-weight: var(--weight-emphasis);
+  --font-heading-leading: var(--line-height-heading);
+  --gap-inline: var(--space-4);
+  --gap-field: var(--space-4);
+  --gap-stack: var(--space-8);
+  --gap-grid: calc(var(--space-8) * 2);
+  --padding-control-inline: calc(var(--space-4) * 2);
+  --padding-control-block: var(--space-6);
+  --padding-card: calc(var(--space-8) * 2);
+  --gutter-page: calc(var(--space-4) * 2);
+  --gutter-page-wide: calc(var(--space-4) * 4);
+  --space-section: calc(var(--space-8) * 4);
+  --radius-card: var(--radius-sm);
+  --radius-control: var(--radius-xs);
+  --elevation-panel: var(--shadow-1);
+  --elevation-accent: var(--shadow-3);
+  --duration-feedback: var(--motion-duration-instant);
+  --duration-panel: var(--motion-duration-fast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-feedback: var(--motion-duration-none);
+    --duration-panel: var(--motion-duration-none);
+  }
+}
